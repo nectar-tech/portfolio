@@ -20,8 +20,9 @@ export interface CaseStudyProject {
   year: string;
   headline: string;
   tags: string[];
+  heroImage?: string;
   challenge: { label: string; title: string; bullets: BulletPoint[] };
-  architecture: { label: string; title: string };
+  architecture: { label: string; title: string; image?: string; imageAlt?: string };
   highlights: { label: string; title: string; bullets: BulletPoint[] };
   keyFeatures: { label: string; title: string; screens: FeatureScreen[] };
   impact: { label: string; title: string; body: string };
@@ -35,7 +36,7 @@ export const projects: CaseStudyProject[] = [
   {
     id: 'academix',
     client: 'ACADEMIX',
-    year: 'בשנת 2025',
+    year: '2025',
     headline:
       'unified platform providing a streamlined end to end infrastructure that centralizes the entire onboarding and management lifecycle',
     tags: ['UX / UI Design', 'Data Visualization'],
@@ -59,7 +60,7 @@ export const projects: CaseStudyProject[] = [
     },
     architecture: {
       label: 'Site Architecture',
-      title: 'ארכיטקטורת האתר',
+      title: 'Site Architecture',
     },
     highlights: {
       label: 'Design Highlights',
@@ -110,9 +111,6 @@ export const projects: CaseStudyProject[] = [
       title: 'A manual process, transformed',
       body: "This project sharpened my ability to break down complex business processes into an intuitive interface, reaffirming that the true value of design lies in the user's ability to make evidence based decisions, on time, and with ease.",
     },
-    footerNav: {
-      prev: { label: 'Mr. Toby', href: '#' },
-      next: { label: 'Vegi', href: '#' },
-    },
+    footerNav: {},
   },
 ];

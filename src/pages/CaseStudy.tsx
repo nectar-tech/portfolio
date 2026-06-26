@@ -1,40 +1,43 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useParams, Navigate } from 'react-router-dom';
 import { projects } from '@/data/projects';
+import { personal } from '@/data/personal';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
 import SectionHeader from '@/components/SectionHeader';
 import BulletItem from '@/components/BulletItem';
 import ChevronIcon from '@/components/ChevronIcon';
 import ImagePlaceholder from '@/components/ImagePlaceholder';
 import FeatureBlock from '@/components/FeatureBlock';
-
-const project = projects[0];
+import ArchitectureSection from '@/components/ArchitectureSection';
 
 export default function CaseStudy() {
-  const { client, year, headline, tags, challenge, architecture, highlights, keyFeatures, impact, footerNav } = project;
+  const { id } = useParams<{ id: string }>();
+  const project = projects.find((p) => p.id === id);
+
+  useEffect(() => {
+    if (project) {
+      document.title = `${project.client} Case Study — Nectar Shavit`;
+    }
+  }, [project]);
+
+  if (!project) return <Navigate to="/404" replace />;
+
+  const { client, year, headline, tags, heroImage, challenge, architecture, highlights, keyFeatures, impact, footerNav } = project;
 
   return (
     <div className="min-h-screen text-left flex flex-col">
-      {/* TOP NAV */}
-      <nav className="sticky top-0 z-[100] flex items-center justify-between px-6 md:px-[60px] h-[68px] border-b border-brandBorder bg-cream/90 backdrop-blur-md">
-        <Link to="/" className="text-[22px] font-extrabold text-brandOrange tracking-tighter no-underline">
-          Nectar.
-        </Link>
-        <a href="#" className="inline-flex items-center gap-2 px-5 py-2 bg-transparent text-brandOrange rounded-full text-[13px] font-semibold no-underline border-[1.5px] border-brandOrange/45 hover:bg-brandOrange/10 hover:border-brandOrange transition-all duration-200">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 3v13" />
-            <path d="M7 11l5 5 5-5" />
-            <path d="M5 21h14" />
-          </svg>
-          Download CV
-        </a>
-      </nav>
+      <Nav />
 
       {/* HERO */}
       <section className="pt-[52px] pb-[56px] px-6 md:px-[60px] max-w-[1100px] mx-auto w-full animate-fadeUp">
-        <Link to="/" className="inline-flex items-center gap-1.5 text-sm font-medium text-muted no-underline mb-10 hover:text-mainText transition-colors duration-200">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted no-underline mb-10 hover:text-mainText transition-colors duration-200"
+        >
           <ChevronIcon direction="left" />
           Back to Portfolio
         </Link>
-
         <p className="text-sm font-semibold text-brandOrange mb-4 tracking-wide">
           {client} <span className="text-muted font-normal">{year}</span>
         </p>
@@ -43,7 +46,10 @@ export default function CaseStudy() {
         </h1>
         <div className="flex flex-wrap gap-2.5 mb-12">
           {tags.map((tag) => (
-            <span key={tag} className="inline-flex items-center px-[18px] py-2 border-[1.5px] border-mainText/20 rounded-full text-sm font-medium text-mainText bg-transparent">
+            <span
+              key={tag}
+              className="inline-flex items-center px-[18px] py-2 border-[1.5px] border-mainText/20 rounded-full text-sm font-medium text-mainText bg-transparent"
+            >
               {tag}
             </span>
           ))}
@@ -53,13 +59,16 @@ export default function CaseStudy() {
       {/* HERO IMAGE */}
       <div className="w-full max-w-[1100px] mx-auto px-6 md:px-[60px] animate-fadeUpDelayed">
         <div className="rounded-2xl overflow-hidden bg-cardBg">
-          <ImagePlaceholder minHeight="min-h-[420px]" />
+          {heroImage ? (
+            <img src={heroImage} alt={`${client} hero`} className="w-full block" loading="lazy" />
+          ) : (
+            <ImagePlaceholder minHeight="min-h-[420px]" />
+          )}
         </div>
       </div>
 
       {/* CONTENT BLOCK */}
       <div className="max-w-[760px] mx-auto py-20 px-6 md:px-[60px] w-full">
-
         {/* Challenge */}
         <div className="mb-16">
           <SectionHeader label={challenge.label} title={challenge.title} />
@@ -74,7 +83,7 @@ export default function CaseStudy() {
 
         {/* Architecture */}
         <div className="mb-16">
-          <SectionHeader label={architecture.label} title={architecture.title} />
+          <ArchitectureSection data={architecture} />
         </div>
 
         <hr className="border-0 border-t border-brandBorder my-16" />
@@ -116,34 +125,40 @@ export default function CaseStudy() {
 
       {/* FOOTER NAV */}
       <nav className="border-t border-brandBorder bg-cream px-6 md:px-[60px] h-[60px] flex items-center justify-between mt-auto">
-        <Link to="/" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity"
+        >
           <ChevronIcon direction="left" />
           All Projects
         </Link>
         <div className="flex items-center gap-6">
           {footerNav.prev && (
-            <a href={footerNav.prev.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity border-r border-brandBorder pr-6">
+            <Link
+              to={footerNav.prev.href}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity border-r border-brandBorder pr-6"
+            >
               <ChevronIcon direction="left" />
               {footerNav.prev.label}
-            </a>
+            </Link>
           )}
           {footerNav.next && (
-            <a href={footerNav.next.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity">
+            <Link
+              to={footerNav.next.href}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity"
+            >
               {footerNav.next.label}
               <ChevronIcon direction="right" />
-            </a>
+            </Link>
           )}
         </div>
       </nav>
 
-      {/* FOOTER */}
-      <footer className="border-t border-brandBorder bg-cream text-center py-7 px-6 text-[13px] text-muted">
-        <p>© 2026 Nectar Shavit | All Rights Reserved</p>
-      </footer>
+      <Footer />
 
       {/* WhatsApp FAB */}
       <a
-        href="https://wa.me/"
+        href={`https://wa.me/${personal.whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 z-[200] w-[60px] h-[60px] rounded-full bg-[#25D366] flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.45)] hover:scale-110 hover:shadow-[0_8px_32px_rgba(37,211,102,0.55)] transition-all duration-200 no-underline"
