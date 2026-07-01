@@ -118,7 +118,12 @@ export interface CaseStudyProject {
   tags: string[];
   heroImage?: string;
 
+  // Academix problem
+  problem?: { label: string; title: string; body?: string };
+
   // Neon Odyssey sections
+  rootCauses?: { label: string; title: string; bullets: BulletPoint[] };
+  consequences?: { label: string; title: string; bullets: BulletPoint[] };
   overview?: { label: string; title: string; body: string };
   strategy?: { label: string; title: string; cards: StrategyCard[] };
   research?: { label: string; title: string; body?: string; bullets: BulletPoint[] };
@@ -147,9 +152,13 @@ export const projects: CaseStudyProject[] = [
     id: 'academix',
     client: 'ACADEMIX',
     year: '2025',
-    headline: 'Onboarding, training, and scheduling\nin one unified workspace',
+    headline: 'Unified platform for seamless employee training',
     tags: ['Dashboard', 'Complex System'],
     heroImage: '/images/home/ACADEMICS.jpg',
+    problem: {
+      label: 'The Problem',
+      title: 'Commanders struggle to track recruit progress throughout the training and onboarding process.',
+    },
     challenge: {
       label: 'The Challenge',
       title: 'Three core issues impacting team performance',
@@ -232,7 +241,7 @@ export const projects: CaseStudyProject[] = [
     id: 'rimon',
     client: 'RIMON',
     year: '2025',
-    headline: 'Personalizing Rights & Benefits Utilization',
+    headline: 'Your benefits, tracked and transparent: bridging the gap to full realization',
     subtitle: 'Native Mobile Application for Managing and Utilizing Rights and Financial Benefits',
     tags: ['Product Strategy', 'Mobile App'],
     rimon: {
@@ -367,10 +376,40 @@ export const projects: CaseStudyProject[] = [
     id: 'neon-odyssey',
     client: 'NEON ODYSSEY',
     year: '2025',
-    headline: 'Interactive Learning Platform',
-    subtitle: 'Transforming data-sorting and quiz mechanics into an engaging visual ecosystem.',
-    tags: ['Gamification', 'EdTech', 'B2B / B2C'],
+    headline: 'Transforming static quizzes into an interactive gaming experience',
+    tags: ['Gamification', 'EdTech'],
     heroImage: '/images/home/NEON.jpg',
+    problem: {
+      label: 'The Problem',
+      title: 'Educators struggle to drive effective student engagement and motivation through traditional text based learning methods.',
+    },
+    rootCauses: {
+      label: 'Root Causes',
+      title: 'Root Causes',
+      bullets: [
+        {
+          title: 'Attention Gap',
+          body: 'Static text cannot compete with the fast-paced digital stimuli students are accustomed to.',
+        },
+        {
+          title: 'Technological Barrier',
+          body: 'Educators lack the time and technical skills to build interactive experiences from scratch.',
+        },
+        {
+          title: 'Lack of Instant Feedback',
+          body: 'Traditional learning methods miss the reward and progression systems (gamification) crucial for intrinsic motivation.',
+        },
+      ],
+    },
+    consequences: {
+      label: 'Consequence',
+      title: 'Consequence',
+      bullets: [
+        { title: 'Wasted Time & Effort', body: '' },
+        { title: 'Learner Frustration & Boredom', body: '' },
+        { title: 'Educator Burnout', body: '' },
+      ],
+    },
     overview: {
       label: 'Project Overview',
       title: 'From static quizzes to a living visual ecosystem',
@@ -381,12 +420,12 @@ export const projects: CaseStudyProject[] = [
       title: 'Two audiences, one platform',
       cards: [
         {
-          label: 'B2B',
+          label: '',
           title: 'Content Creators',
           body: 'Educators, instructors, and corporate trainers looking to build custom knowledge sorting games.',
         },
         {
-          label: 'B2C',
+          label: '',
           title: 'Learners',
           body: 'Students (ages 12+) and adult learners.',
         },

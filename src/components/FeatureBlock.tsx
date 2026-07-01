@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import type { FeatureScreen, FeatureIcon } from '@/data/projects';
 import ImagePlaceholder from '@/components/ImagePlaceholder';
@@ -53,33 +54,123 @@ const icons: Record<FeatureIcon, ReactNode> = {
 
 interface FeatureBlockProps {
   screen: FeatureScreen;
+  hideHeader?: boolean;
 }
 
-export default function FeatureBlock({ screen }: FeatureBlockProps) {
+function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
+  const [index, setIndex] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
+
+  const goTo = (next: number) => {
+    if (transitioning) return;
+    setTransitioning(true);
+    setIndex(next);
+    setTimeout(() => setTransitioning(false), 700);
+  };
+
+  useEffect(() => {
+    if (images.length < 2) return;
+    const t1 = setTimeout(() => goTo(1), 2000);
+    const t2 = setTimeout(() => goTo(0), 5500);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+
+
   return (
-    <div className="mt-12 pt-12 first:border-0 first:mt-0 first:pt-0">
-      <div className="flex items-start gap-5 mb-5">
-        <div className="w-[52px] h-[52px] rounded-full bg-brandLight/20 flex items-center justify-center shrink-0 mt-0.5">
-          {icons[screen.icon]}
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <span className="text-base font-bold text-brandOrange tracking-[0.08em] mb-1">{screen.number}</span>
-          <h3 className="text-[22px] font-extrabold text-mainText tracking-tight mb-1">{screen.title}</h3>
+    <div className="relative">
+      <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
+        <div
+          className="flex transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
+          {images.map((img) => (
+            <img
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              loading="lazy"
+              className="w-full shrink-0 block"
+            />
+          ))}
         </div>
       </div>
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={() => goTo(Math.max(0, index - 1))}
+            aria-label="Previous image"
+            className="absolute left-5 top-1/2 w-10 h-10 rounded-full bg-white flex items-center justify-center shadow transition disabled:opacity-30"
+            style={index > 0 ? { animation: 'nudgeLeft 3s ease-in-out infinite', transform: 'translateX(0) translateY(-50%)' } : { transform: 'translateY(-50%)', opacity: 0.3 }}
+            disabled={index === 0}
+          >
+            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="#2D2D2D">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </button>
+          <button
+            onClick={() => goTo(Math.min(images.length - 1, index + 1))}
+            aria-label="Next image"
+            className="absolute right-5 top-1/2 w-10 h-10 rounded-full bg-white flex items-center justify-center shadow transition disabled:opacity-30"
+            style={index < images.length - 1 ? { animation: 'nudgeRight 3s ease-in-out infinite', transform: 'translateX(0) translateY(-50%)' } : { transform: 'translateY(-50%)', opacity: 0.3 }}
+            disabled={index === images.length - 1}
+          >
+            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="#2D2D2D">
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+          </button>
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {images.map((_, i) => {
+              const dotIndex = images.length - 1 - i;
+              return (
+                <button
+                  key={i}
+                  onClick={() => goTo(dotIndex)}
+                  aria-label={`Go to image ${dotIndex + 1}`}
+                  className={`w-2 h-2 rounded-full transition ${dotIndex === index ? 'bg-brandOrange' : 'bg-white/60'}`}
+                />
+              );
+            })}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default function FeatureBlock({ screen, hideHeader }: FeatureBlockProps) {
+  return (
+    <div className="mt-12 pt-12 first:border-0 first:mt-0 first:pt-0">
+      {!hideHeader && (
+        <div className="flex items-start gap-5 mb-5">
+          <div className="w-[52px] h-[52px] rounded-full bg-brandLight/20 flex items-center justify-center shrink-0 mt-0.5">
+            {icons[screen.icon]}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span className="text-base font-bold text-brandOrange tracking-[0.08em] mb-1">{screen.number}</span>
+            <h3 className="text-[22px] font-extrabold text-mainText tracking-tight mb-1">{screen.title}</h3>
+          </div>
+        </div>
+      )}
+      {hideHeader && screen.title && (
+        <h3 className="text-[22px] font-extrabold text-mainText tracking-tight mb-5">{screen.title}</h3>
+      )}
       <p className="text-lg text-muted leading-[1.75] max-w-[700px] mb-6">{screen.description}</p>
-      <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)] group">
-        {screen.image ? (
+      {screen.images && screen.images.length > 0 ? (
+        <ImageCarousel images={screen.images} />
+      ) : screen.image ? (
+        <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)] group">
           <img
             className="w-full block transition-transform duration-500 group-hover:scale-[1.015]"
             src={screen.image}
             alt={screen.imageAlt}
             loading="lazy"
           />
-        ) : (
+        </div>
+      ) : (
+        <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
           <ImagePlaceholder minHeight="min-h-[320px]" />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

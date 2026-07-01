@@ -33,7 +33,7 @@ export default function CaseStudy() {
 
   const {
     client, year, headline, subtitle, tags, heroImage,
-    overview, strategy, research, game, narrative, b2b, kpis,
+    problem, rootCauses, consequences, overview, strategy, research, game, narrative, b2b, kpis,
     rimon, targetAudienceImage,
     challenge, architecture, highlights, keyFeatures, impact, footerNav,
   } = project;
@@ -61,9 +61,7 @@ export default function CaseStudy() {
         <h1 className="text-[52px] md:text-[8vw] lg:text-[100px] font-black leading-[0.96] tracking-tight text-mainText max-w-[900px] mb-4">
           {headline}
         </h1>
-        {subtitle && (
-          <p className={`${bodyText} mb-7 max-w-[680px]`}>{subtitle}</p>
-        )}
+
         <div className="flex flex-wrap gap-2.5 mb-12">
           {tags.map((tag) => (
             <span
@@ -91,7 +89,7 @@ export default function CaseStudy() {
         <>
           {overview && (
             <section className="w-full py-16 px-6 md:px-[60px]">
-              <div className="max-w-[760px] mx-auto">
+              <div className="max-w-[1100px] mx-auto">
                 <p className={eyebrow}>{overview.label}</p>
                 <h2 className={sectionTitle}>{overview.title}</h2>
                 <p className={bodyText}>{overview.body}</p>
@@ -99,9 +97,45 @@ export default function CaseStudy() {
             </section>
           )}
 
+          {problem && (
+            <section className="w-full bg-white py-16 px-6 md:px-[60px]">
+              <div className="max-w-[700px] mx-auto">
+                <SectionHeader label={problem.label} title={problem.title} />
+                {problem.body && <p className={bodyText}>{problem.body}</p>}
+              </div>
+            </section>
+          )}
+
+          {(rootCauses || consequences) && (
+            <section className="w-full bg-[#F5F5F5] py-16 px-6 md:px-[60px]">
+              <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                {rootCauses && (
+                  <div>
+                    <SectionHeader label={rootCauses.label} title={rootCauses.title} />
+                    <ul className="flex flex-col gap-3.5 mt-5">
+                      {rootCauses.bullets.map((b) => (
+                        <BulletItem key={b.title} title={b.title} body={b.body} />
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {consequences && (
+                  <div>
+                    <SectionHeader label={consequences.label} title={consequences.title} />
+                    <ul className="flex flex-col gap-3.5 mt-5">
+                      {consequences.bullets.map((b) => (
+                        <BulletItem key={b.title} title={b.title} body={b.body} />
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
+
           {strategy && (
             <section className="w-full bg-white py-16 px-6 md:px-[60px]">
-              <div className="max-w-[760px] mx-auto">
+              <div className="max-w-[1100px] mx-auto">
                 <p className={eyebrow}>{strategy.label}</p>
                 <h2 className={sectionTitle}>{strategy.title}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-7">
@@ -119,12 +153,12 @@ export default function CaseStudy() {
 
           {research && (
             <section className="w-full py-16 px-6 md:px-[60px]">
-              <div className="max-w-[760px] mx-auto">
+              <div className="max-w-[1100px] mx-auto">
                 <SectionHeader label={research.label} title={research.title} />
                 {research.body && <p className={`${bodyText} mt-4 mb-2`}>{research.body}</p>}
                 <ul className="flex flex-col gap-3.5 mt-5">
                   {research.bullets.map((b) => (
-                    <BulletItem key={b.title} title={b.title} body={b.body} icon="/images/neon-odyssey/neon-icon-star.png" iconSize="w-8 h-8" />
+                    <BulletItem key={b.title} title={b.title} body={b.body} icon="/images/neon-odyssey/neon-icon-star.png" iconSize="w-5 h-5" />
                   ))}
                 </ul>
               </div>
@@ -133,11 +167,11 @@ export default function CaseStudy() {
 
           {game && (
             <section className="w-full bg-white py-16 px-6 md:px-[60px]">
-              <div className="max-w-[760px] mx-auto">
+              <div className="max-w-[1100px] mx-auto">
                 <SectionHeader label={game.label} title={game.title} />
                 <ul className="flex flex-col gap-3.5 mt-5">
                   {game.bullets.map((b, i) => (
-                    <BulletItem key={i} title={b.title} body={b.body} icon="/images/neon-odyssey/neon-icon-star.png" iconSize="w-8 h-8" />
+                    <BulletItem key={i} title={b.title} body={b.body} icon="/images/neon-odyssey/neon-icon-star.png" iconSize="w-5 h-5" />
                   ))}
                 </ul>
               </div>
@@ -146,7 +180,7 @@ export default function CaseStudy() {
 
           {narrative && (
             <section className="w-full py-16 px-6 md:px-[60px]">
-              <div className="max-w-[760px] mx-auto">
+              <div className="max-w-[1100px] mx-auto">
                 <SectionHeader label={narrative.label} title={narrative.title} />
                 <p className={`${bodyText} mt-4`}>{narrative.intro}</p>
                 <div className="mt-9 rounded-[30px] overflow-hidden shadow-[0_5px_6px_rgba(0,0,0,0.11)] grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-0" style={{ background: 'linear-gradient(to right, #1E1E1E, #313790)' }}>
@@ -165,7 +199,7 @@ export default function CaseStudy() {
 
           {/* KEY SCREENS */}
           <section className="w-full bg-white py-16 px-6 md:px-[60px]">
-            <div className="max-w-[760px] mx-auto">
+            <div className="max-w-[1100px] mx-auto">
               <SectionHeader label={keyFeatures.label} title={keyFeatures.title} />
               {keyFeatures.screens.map((screen) => (
                 <FeatureBlock key={screen.number} screen={screen} hideHeader />
@@ -175,7 +209,7 @@ export default function CaseStudy() {
 
           {b2b && (
             <section className="w-full py-16 px-6 md:px-[60px]">
-              <div className="max-w-[760px] mx-auto">
+              <div className="max-w-[1100px] mx-auto">
                 <p className={eyebrow}>{b2b.label}</p>
                 <h2 className={sectionTitle}>{b2b.title}</h2>
                 {b2b.body && <p className={`${bodyText} mt-4`}>{b2b.body}</p>}
@@ -445,9 +479,19 @@ export default function CaseStudy() {
         </>
       ) : (
         <>
+          {/* ACADEMIX - Problem */}
+          {problem && (
+            <section className="w-full py-16 px-6 md:px-[60px]">
+              <div className="max-w-[700px] mx-auto">
+                <SectionHeader label={problem.label} title={problem.title} />
+                {problem.body && <p className={bodyText}>{problem.body}</p>}
+              </div>
+            </section>
+          )}
+
           {/* ACADEMIX - Challenge */}
           <section className="w-full py-16 px-6 md:px-[60px]">
-            <div className="max-w-[760px] mx-auto">
+            <div className="max-w-[700px] mx-auto">
               <SectionHeader label={challenge.label} title={challenge.title} />
               <ul className="flex flex-col gap-3.5 mt-5">
                 {challenge.bullets.map((b) => (
@@ -459,14 +503,14 @@ export default function CaseStudy() {
 
           {/* ACADEMIX - Architecture */}
           <section className="w-full bg-white py-16 px-6 md:px-[60px]">
-            <div className="max-w-[760px] mx-auto">
+            <div className="max-w-[1100px] mx-auto">
               <ArchitectureSection data={architecture} />
             </div>
           </section>
 
           {/* ACADEMIX - Highlights */}
           <section className="w-full py-16 px-6 md:px-[60px]">
-            <div className="max-w-[760px] mx-auto">
+            <div className="max-w-[700px] mx-auto">
               <SectionHeader label={highlights.label} title={highlights.title} />
               <ul className="flex flex-col gap-3.5 mt-5">
                 {highlights.bullets.map((b) => (
@@ -478,7 +522,7 @@ export default function CaseStudy() {
 
           {/* ACADEMIX - Key Features */}
           <section className="w-full bg-white py-16 px-6 md:px-[60px]">
-            <div className="max-w-[760px] mx-auto">
+            <div className="max-w-[1100px] mx-auto">
               <SectionHeader label={keyFeatures.label} title={keyFeatures.title} />
               {keyFeatures.screens.map((screen) => (
                 <FeatureBlock key={screen.number} screen={screen} />
@@ -488,9 +532,9 @@ export default function CaseStudy() {
 
           {/* ACADEMIX - Impact */}
           <section className="w-full py-16 px-6 md:px-[60px]">
-            <div className="max-w-[1100px] mx-auto">
+            <div className="max-w-[700px] mx-auto">
               <SectionHeader label={impact.label} title={impact.title} />
-              <p className={`${bodyText} max-w-[680px]`}>{impact.body}</p>
+              <p className={bodyText}>{impact.body}</p>
             </div>
           </section>
         </>

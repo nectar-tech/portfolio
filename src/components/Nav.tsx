@@ -3,7 +3,7 @@ import { personal } from '@/data/personal';
 
 export default function Nav() {
   return (
-    <nav className="sticky top-0 z-[100] flex items-center justify-between px-6 md:px-[60px] h-[68px] bg-cream/90 backdrop-blur-md">
+    <nav className="sticky top-0 z-[100] flex items-center justify-between px-6 md:px-[60px] h-[68px] bg-cream/90 backdrop-blur-md shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
       <Link to="/" className="text-[26px] font-extrabold text-brandOrange tracking-tighter no-underline">
         Nectar.
       </Link>

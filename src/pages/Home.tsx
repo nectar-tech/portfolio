@@ -44,28 +44,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section className="bg-white px-6 md:px-[60px] py-20">
-        <div className="max-w-[1100px] mx-auto flex flex-col md:flex-row md:items-center gap-12">
-          <div className="flex-1">
-            <p className="text-base font-bold tracking-widest uppercase text-brandOrange mb-3">About Me</p>
-            <h2 className="text-[32px] md:text-[3.5vw] lg:text-[42px] font-extrabold tracking-tight text-mainText mb-6 leading-tight">
-              Behind the Product
-            </h2>
-            <p className="text-lg text-muted leading-[1.85] max-w-[600px]">{personal.bio}</p>
-          </div>
-          <div className="shrink-0 w-full md:w-[300px] lg:w-[360px] rounded-[30px] overflow-hidden shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
-            <img src="/images/about.jpg" alt="Nectar Shavit" className="w-full block" loading="lazy" />
-          </div>
-        </div>
-      </section>
-
       {/* CONTACT */}
       <section className="px-6 md:px-[60px] py-20 max-w-[1100px] mx-auto w-full">
         <h2 className="text-[32px] md:text-[3.5vw] lg:text-[42px] font-extrabold tracking-tight text-mainText mb-10 text-center">
           Get in Touch
         </h2>
-        <div className="flex gap-4 justify-center">
+        <div className="flex flex-wrap gap-4 justify-center">
+          {personal.cvUrl && (
+            <a
+              href={personal.cvUrl}
+              download="CV Nectar Shavit Product Design"
+              aria-label="Download CV"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-brandOrange text-cream rounded-full text-[15px] font-semibold no-underline hover:bg-[#784ECC] transition-colors duration-200"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Download CV
+            </a>
+          )}
           <a
             href={`mailto:${personal.email}`}
             aria-label="Email"
