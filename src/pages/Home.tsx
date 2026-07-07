@@ -15,18 +15,16 @@ export default function Home() {
       <Nav />
 
       {/* HERO */}
-      <section className="px-6 md:px-[60px] pt-[80px] pb-10 max-w-[1200px] mx-auto w-full animate-fadeUp">
+      <section className="pb-10 w-full animate-fadeUp">
         <div
-          className="relative rounded-[28px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] overflow-hidden min-h-[320px] md:min-h-[380px] flex items-center"
-          style={{ backgroundImage: 'url(/images/home/bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+          className="relative overflow-hidden min-h-[480px] md:min-h-[600px] flex items-center"
+          style={{ backgroundImage: 'url(/images/home/bg2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
         >
-          <div className="relative z-10 p-8 md:p-12 max-w-[55%]">
-            <h1 className="text-[40px] md:text-[5vw] lg:text-[64px] font-black leading-[1.05] tracking-tight text-white mb-5">
-              I'm Nectar.<br />
-              A product designer.
-            </h1>
-            <p className="text-lg md:text-xl text-white/75 leading-[1.7]">
-              Here to solve design challenges<br />and create simple, meaningful solutions.
+          <div className="relative z-10 px-6 md:px-[60px] py-8 md:py-12 max-w-[55%]">
+            <p className="text-xl md:text-[22px] text-white/90 font-light max-w-[420px]">
+              <span className="block text-[28px] md:text-[34px] leading-[1.3]">I'm Nectar</span>
+              <span className="block text-[38px] md:text-[46px] font-semibold leading-[1.1] text-white">a Product Designer</span>
+              <span className="block mt-3 leading-[1.75]">focused on digital products, merging a solid background in user engagement and gaming with hands-on UI/UX execution</span>
             </p>
           </div>
         </div>
@@ -44,27 +42,59 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ABOUT */}
+      <section className="w-full bg-white">
+      <div className="px-6 md:px-[60px] py-20 max-w-[1200px] mx-auto w-full">
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+          <div className="flex-1 order-2 md:order-1">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.15em] text-brandOrange mb-4">
+              I've always believed that...
+            </p>
+            <h2 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-mainText mb-6 leading-[1.15]">
+              Great design is about connecting the dots.
+            </h2>
+            <div className="space-y-4 text-[17px] text-mainText/70 leading-[1.75]">
+              <p>
+                That's why my playground spans across learning technologies, computer game design, and complex web systems. I love taking intricate data or structural chaos and turning them into clean, intuitive, and engaging digital experiences.
+              </p>
+              <p>
+                Today, I bring this multidisciplinary approach into my work as a Product Designer, combining my academic background with hands-on UX/UI design experience in IDF's 8200 unit.
+              </p>
+            </div>
+            {personal.cvUrl && (
+              <a
+                href={personal.cvUrl}
+                download="CV Nectar Shavit Product Design"
+                aria-label="Download CV"
+                className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 bg-brandOrange text-cream rounded-full text-[15px] font-semibold no-underline hover:bg-[#784ECC] transition-colors duration-200"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Download CV
+              </a>
+            )}
+          </div>
+          <div className="flex-shrink-0 order-1 md:order-2 w-full md:w-[30%]">
+            <img
+              src="/images/about.jpg"
+              alt="Nectar Shavit"
+              className="w-full rounded-[20px] object-cover shadow-[0_8px_32px_rgba(0,0,0,0.10)]"
+              style={{ height: '420px', objectPosition: 'center 30%' }}
+            />
+          </div>
+        </div>
+      </div>
+      </section>
+
       {/* CONTACT */}
       <section className="px-6 md:px-[60px] py-20 max-w-[1100px] mx-auto w-full">
         <h2 className="text-[32px] md:text-[3.5vw] lg:text-[42px] font-extrabold tracking-tight text-mainText mb-10 text-center">
           Get in Touch
         </h2>
         <div className="flex flex-wrap gap-4 justify-center">
-          {personal.cvUrl && (
-            <a
-              href={personal.cvUrl}
-              download="CV Nectar Shavit Product Design"
-              aria-label="Download CV"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-brandOrange text-cream rounded-full text-[15px] font-semibold no-underline hover:bg-[#784ECC] transition-colors duration-200"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-              Download CV
-            </a>
-          )}
           <a
             href={`mailto:${personal.email}`}
             aria-label="Email"
