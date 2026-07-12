@@ -8,19 +8,20 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const { id, client, year, headline, tags, heroImage } = project;
+  const { id, client, year, headline, tags, heroImage, heroImagePosition } = project;
 
   return (
     <Link
       to={`/case-study/${id}`}
-      className="group flex flex-col md:flex-row md:items-stretch md:h-[360px] rounded-[30px] overflow-hidden bg-white no-underline shadow-[0_5px_6px_rgba(0,0,0,0.11)] transition-all duration-300"
+      className="group flex flex-col md:flex-row md:items-stretch md:h-[420px] rounded-[30px] overflow-hidden bg-white no-underline shadow-[0_5px_6px_rgba(0,0,0,0.11)] transition-all duration-300"
     >
-      <div className="w-full md:w-[40%] lg:w-[45%] md:shrink-0 overflow-hidden">
+      <div className="w-full md:w-[55%] lg:w-[58%] md:shrink-0 overflow-hidden">
         {heroImage ? (
           <img
             src={heroImage}
             alt={`${client} case study`}
             className="w-full h-full object-cover block aspect-[16/9] md:aspect-auto transition-transform duration-500 group-hover:scale-[1.03]"
+            style={{ objectPosition: heroImagePosition ?? 'center' }}
             loading="lazy"
           />
         ) : (

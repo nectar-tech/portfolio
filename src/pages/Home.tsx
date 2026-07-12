@@ -16,14 +16,19 @@ export default function Home() {
 
       {/* HERO */}
       <section className="pb-10 w-full animate-fadeUp">
-        <div
-          className="relative overflow-hidden min-h-[480px] md:min-h-[600px] flex items-center"
-          style={{ backgroundImage: 'url(/images/home/bg2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
-        >
+        <div className="relative overflow-hidden min-h-[480px] md:min-h-[600px] flex items-center">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            src="/images/home/header-video.mp4"
+          />
           <div className="relative z-10 px-6 md:px-[60px] py-8 md:py-12 max-w-[55%]">
-            <p className="text-xl md:text-[22px] text-white/90 font-light max-w-[420px]">
+            <p className="text-xl md:text-[22px] text-gray-900 font-light max-w-[420px]">
               <span className="block text-[28px] md:text-[34px] leading-[1.3]">I'm Nectar</span>
-              <span className="block text-[38px] md:text-[46px] font-semibold leading-[1.1] text-white">a Product Designer</span>
+              <span className="block text-[38px] md:text-[46px] font-semibold leading-[1.1] text-gray-900">a Product Designer</span>
               <span className="block mt-3 leading-[1.75]">focused on digital products, merging a solid background in user engagement and gaming with hands-on UI/UX execution</span>
             </p>
           </div>
