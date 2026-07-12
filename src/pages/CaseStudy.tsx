@@ -32,10 +32,11 @@ export default function CaseStudy() {
   if (!project) return <Navigate to="/404" replace />;
 
   const {
-    client, year, headline, subtitle, tags, heroImage,
+    client, year, headline, subtitle, tags, heroImage, heroBg, heroBgMobile, heroBgDarkText,
     problem, rootCauses, consequences, overview, strategy, research, game, narrative, b2b, kpis,
     rimon, targetAudienceImage,
     challenge, architecture, highlights, keyFeatures, impact, footerNav,
+    causes, targetAudience, marketResearch, solution,
   } = project;
 
   const hasNeonSections = !!(overview || strategy || research || game || narrative || b2b || kpis);
@@ -47,43 +48,108 @@ export default function CaseStudy() {
       <Nav />
 
       {/* HERO */}
-      <section className="pt-[52px] pb-[56px] px-6 md:px-[60px] max-w-[1100px] mx-auto w-full animate-fadeUp">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted no-underline mb-10 hover:text-mainText transition-colors duration-200"
-        >
-          <ChevronIcon direction="left" />
-          Back to Portfolio
-        </Link>
-        <p className="text-sm font-semibold text-brandOrange mb-4 tracking-wide">
-          {client} <span className="text-muted font-normal">{year}</span>
-        </p>
-        <h1 className="text-[52px] md:text-[8vw] lg:text-[100px] font-black leading-[0.96] tracking-tight text-mainText max-w-[900px] mb-4">
-          {headline}
-        </h1>
-
-        <div className="flex flex-wrap gap-2.5 mb-12">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex items-center px-[18px] py-2 rounded-2xl text-sm font-medium bg-white" style={{ color: '#616775' }}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* HERO IMAGE */}
-      <div className="w-full max-w-[1100px] mx-auto px-6 md:px-[60px] animate-fadeUpDelayed">
-        <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
-          {heroImage ? (
-            <img src={heroImage} alt={`${client} hero`} className="w-full block" loading="lazy" />
-          ) : (
-            <ImagePlaceholder minHeight="min-h-[420px]" />
+      {heroBg ? (
+        <section className="animate-fadeUp w-full">
+          {/* Mobile: image above, text below */}
+          {heroBgMobile && (
+            <div className="md:hidden flex flex-col w-full">
+              <img src={heroBgMobile} alt={`${client} hero`} className="w-full block" />
+              <div className="px-6 pt-6 pb-8 max-w-[520px] bg-white">
+                <Link
+                  to="/"
+                  className={`inline-flex items-center gap-1.5 text-sm font-medium no-underline mb-6 transition-colors duration-200 ${heroBgDarkText ? 'text-mainText/70 hover:text-mainText' : 'text-white/70 hover:text-white'}`}
+                >
+                  <ChevronIcon direction="left" />
+                  Back to Portfolio
+                </Link>
+                <p className="text-sm font-semibold text-brandOrange mb-3 tracking-wide">
+                  {client} <span className={`font-normal ${heroBgDarkText ? 'text-mainText/60' : 'text-white/60'}`}>{year}</span>
+                </p>
+                <h1 className="text-[38px] font-black leading-[1] tracking-tight mb-5 text-mainText">
+                  {headline}
+                </h1>
+                <div className="flex flex-wrap gap-2.5">
+                  {tags.map((tag) => (
+                    <span key={tag} className="inline-flex items-center px-[18px] py-2 rounded-2xl text-sm font-medium bg-mainText/10 text-mainText/80">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           )}
-        </div>
-      </div>
+          {/* Desktop: background image with overlaid text */}
+          <div
+            className="hero-bg-section relative w-full min-h-[560px] flex-col justify-center hidden md:flex"
+            style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+          >
+          <div className="relative z-10 px-6 md:px-[60px] py-12 max-w-[520px]">
+            <Link
+              to="/"
+              className={`inline-flex items-center gap-1.5 text-sm font-medium no-underline mb-8 transition-colors duration-200 ${heroBgDarkText ? 'text-mainText/70 hover:text-mainText' : 'text-white/70 hover:text-white'}`}
+            >
+              <ChevronIcon direction="left" />
+              Back to Portfolio
+            </Link>
+            <p className="text-sm font-semibold text-brandOrange mb-4 tracking-wide">
+              {client} <span className={`font-normal ${heroBgDarkText ? 'text-mainText/60' : 'text-white/60'}`}>{year}</span>
+            </p>
+            <h1 className={`text-[42px] md:text-[56px] font-black leading-[1] tracking-tight mb-6 ${heroBgDarkText ? 'text-mainText' : 'text-white'}`}>
+              {headline}
+            </h1>
+            <div className="flex flex-wrap gap-2.5">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className={`inline-flex items-center px-[18px] py-2 rounded-2xl text-sm font-medium bg-white/20 ${heroBgDarkText ? 'text-mainText/80' : 'text-white/80'}`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+          </div>
+        </section>
+      ) : (
+        <>
+          <section className="pt-[52px] pb-[56px] px-6 md:px-[60px] max-w-[1100px] mx-auto w-full animate-fadeUp">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted no-underline mb-10 hover:text-mainText transition-colors duration-200"
+            >
+              <ChevronIcon direction="left" />
+              Back to Portfolio
+            </Link>
+            <p className="text-sm font-semibold text-brandOrange mb-4 tracking-wide">
+              {client} <span className="text-muted font-normal">{year}</span>
+            </p>
+            <h1 className="text-[52px] md:text-[8vw] lg:text-[100px] font-black leading-[0.96] tracking-tight text-mainText max-w-[900px] mb-4">
+              {headline}
+            </h1>
+            <div className="flex flex-wrap gap-2.5 mb-12">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center px-[18px] py-2 rounded-2xl text-sm font-medium bg-white" style={{ color: '#616775' }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </section>
+
+          {/* HERO IMAGE */}
+          <div className="w-full max-w-[1100px] mx-auto px-6 md:px-[60px] animate-fadeUpDelayed">
+            <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
+              {heroImage ? (
+                <img src={heroImage} alt={`${client} hero`} className="w-full block" loading="lazy" />
+              ) : (
+                <ImagePlaceholder minHeight="min-h-[420px]" />
+              )}
+            </div>
+          </div>
+        </>
+      )}
 
       {hasNeonSections ? (
         <>
@@ -345,27 +411,33 @@ export default function CaseStudy() {
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-white rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] p-8 mb-5">
-                    <p className={cardLabel}>Core Values</p>
+                </div>
+              </section>
+
+              {/* CORE VALUES & GOAL */}
+              <section className="w-full bg-white py-16 px-6 md:px-[60px]">
+                <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <p className={eyebrow}>Core Values</p>
                     <p className={`${subHeading} mb-4`}>{rimon.targetAudience.coreValues.headline}</p>
-                    <ul className="flex flex-col gap-2.5">
+                    <ul className="flex flex-col gap-3 mt-2">
                       {rimon.targetAudience.coreValues.bullets.map((b) => (
-                        <li key={b} className="flex gap-3 text-sm text-muted leading-[1.7]">
-                          <span className="w-1.5 h-1.5 rounded-full bg-brandOrange shrink-0 mt-[7px] opacity-70" />
+                        <li key={b} className="flex gap-3 text-base text-muted leading-[1.7]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-brandOrange shrink-0 mt-[10px] opacity-70" />
                           {b}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-white rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] p-8">
-                    <p className={cardLabel}>Goal</p>
-                    <p className="text-base font-semibold text-mainText leading-[1.6]">{rimon.targetAudience.goal}</p>
+                  <div>
+                    <p className={eyebrow}>Goal</p>
+                    <p className="text-lg font-semibold text-mainText leading-[1.6]">{rimon.targetAudience.goal}</p>
                   </div>
                 </div>
               </section>
 
               {/* SUCCESS METRICS */}
-              <section className="w-full bg-white py-16 px-6 md:px-[60px]">
+              <section className="w-full bg-[#F5F5F5] py-16 px-6 md:px-[60px]">
                 <div className="max-w-[1100px] mx-auto">
                   <p className={eyebrow}>{rimon.successMetrics.label}</p>
                   <h2 className={sectionTitle}>{rimon.successMetrics.title}</h2>
@@ -489,34 +561,88 @@ export default function CaseStudy() {
             </section>
           )}
 
-          {/* ACADEMIX - Challenge */}
-          <section className="w-full py-16 px-6 md:px-[60px]">
-            <div className="max-w-[700px] mx-auto">
-              <SectionHeader label={challenge.label} title={challenge.title} />
-              <ul className="flex flex-col gap-3.5 mt-5">
-                {challenge.bullets.map((b) => (
-                  <BulletItem key={b.title} title={b.title} body={b.body} />
-                ))}
-              </ul>
-            </div>
-          </section>
+          {/* ACADEMIX - Causes */}
+          {causes && (
+            <section className="w-full bg-white py-16 px-6 md:px-[60px]">
+              <div className="max-w-[700px] mx-auto">
+                <SectionHeader label={causes.label} title={causes.title} />
+                <ul className="flex flex-col gap-4 mt-5 list-none">
+                  {causes.bullets.map((b, i) => (
+                    <li key={i} className="flex gap-3 items-start">
+                      <span className="mt-2 w-2 h-2 rounded-full bg-brandOrange shrink-0" />
+                      <p className={bodyText}>{b}</p>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8 px-6 py-4 rounded-[16px] bg-brandOrange/10 border border-brandOrange/20">
+                  <p className="text-base font-semibold text-brandOrange">The Result:</p>
+                  <p className={bodyText}>{causes.result}</p>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* ACADEMIX - Target Audience */}
+          {targetAudience && (
+            <section className="w-full py-16 px-6 md:px-[60px]">
+              <div className="max-w-[700px] mx-auto">
+                <SectionHeader label={targetAudience.label} title={targetAudience.title} />
+                <div className="flex flex-col gap-5 mt-6">
+                  {targetAudience.groups.map((g, i) => (
+                    <div key={i} className="bg-white rounded-[20px] shadow-[0_5px_6px_rgba(0,0,0,0.08)] px-7 py-6">
+                      <h4 className="text-base font-bold text-mainText mb-2">{g.title}</h4>
+                      <p className={smallBody}>{g.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* ACADEMIX - Market Research */}
+          {marketResearch && (
+            <section className="w-full bg-white py-16 px-6 md:px-[60px]">
+              <div className="max-w-[700px] mx-auto">
+                <SectionHeader label={marketResearch.label} title={marketResearch.title} />
+                <p className="text-lg font-semibold text-mainText mt-6 mb-5">{marketResearch.intro}</p>
+                <div className="flex flex-col gap-6">
+                  {marketResearch.findings.map((f) => (
+                    <div key={f.number} className="flex gap-5 items-start">
+                      <span className="text-[28px] font-black text-brandOrange/30 leading-none shrink-0 w-10">{f.number}</span>
+                      <div>
+                        <h4 className="text-base font-bold text-mainText mb-1">{f.title}</h4>
+                        <p className={smallBody}>{f.body}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* ACADEMIX - Solution */}
+          {solution && (
+            <section className="w-full py-16 px-6 md:px-[60px]">
+              <div className="max-w-[700px] mx-auto">
+                <p className={eyebrow}>{solution.label}</p>
+                <p className="text-[22px] md:text-[26px] font-bold text-mainText leading-[1.6] mb-8 whitespace-pre-line">{solution.body}</p>
+                <p className="text-lg font-bold text-mainText mb-4">{solution.valueLabel}</p>
+                <ul className="flex flex-col gap-3">
+                  {solution.values.map((v, i) => (
+                    <li key={i} className="flex gap-3 items-start">
+                      <span className="mt-2 w-2 h-2 rounded-full bg-brandOrange shrink-0" />
+                      <p className={bodyText}>{v}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          )}
 
           {/* ACADEMIX - Architecture */}
           <section className="w-full bg-white py-16 px-6 md:px-[60px]">
             <div className="max-w-[1100px] mx-auto">
               <ArchitectureSection data={architecture} />
-            </div>
-          </section>
-
-          {/* ACADEMIX - Highlights */}
-          <section className="w-full py-16 px-6 md:px-[60px]">
-            <div className="max-w-[700px] mx-auto">
-              <SectionHeader label={highlights.label} title={highlights.title} />
-              <ul className="flex flex-col gap-3.5 mt-5">
-                {highlights.bullets.map((b) => (
-                  <BulletItem key={b.title} title={b.title} body={b.body} />
-                ))}
-              </ul>
             </div>
           </section>
 
@@ -530,13 +656,6 @@ export default function CaseStudy() {
             </div>
           </section>
 
-          {/* ACADEMIX - Impact */}
-          <section className="w-full py-16 px-6 md:px-[60px]">
-            <div className="max-w-[700px] mx-auto">
-              <SectionHeader label={impact.label} title={impact.title} />
-              <p className={bodyText}>{impact.body}</p>
-            </div>
-          </section>
         </>
       )}
 

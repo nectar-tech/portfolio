@@ -117,9 +117,17 @@ export interface CaseStudyProject {
   subtitle?: string;
   tags: string[];
   heroImage?: string;
+  heroImagePosition?: string;
+  heroBg?: string;
+  heroBgMobile?: string;
+  heroBgDarkText?: boolean;
 
-  // Academix problem
+  // Academix sections
   problem?: { label: string; title: string; body?: string };
+  causes?: { label: string; title: string; bullets: string[]; result: string };
+  targetAudience?: { label: string; title: string; groups: { title: string; body: string }[] };
+  marketResearch?: { label: string; title: string; intro: string; findings: { number: string; title: string; body: string }[] };
+  solution?: { label: string; body: string; valueLabel: string; values: string[] };
 
   // Neon Odyssey sections
   rootCauses?: { label: string; title: string; bullets: BulletPoint[] };
@@ -137,7 +145,7 @@ export interface CaseStudyProject {
   targetAudienceImage?: string;
 
   challenge: { label: string; title: string; bullets: BulletPoint[] };
-  architecture: { label: string; title: string; image?: string; imageAlt?: string };
+  architecture: { label: string; title: string; image?: string; imageAlt?: string; iframeUrl?: string };
   highlights: { label: string; title: string; bullets: BulletPoint[] };
   keyFeatures: { label: string; title: string; screens: FeatureScreen[] };
   impact: { label: string; title: string; body: string };
@@ -154,10 +162,80 @@ export const projects: CaseStudyProject[] = [
     year: '2025',
     headline: 'Unified platform for seamless employee training',
     tags: ['Dashboard', 'Complex System'],
-    heroImage: '/images/home/ACADEMICS.jpg',
+    heroImage: '/images/home/aca.jpg',
+    heroImagePosition: 'right',
+    heroBg: '/images/academix/acaTop.jpg',
+    heroBgMobile: '/images/academix/acaTopMobile.jpg',
     problem: {
       label: 'The Problem',
       title: 'Commanders struggle to track recruit progress throughout the training and onboarding process.',
+    },
+    causes: {
+      label: 'Causes of the Problem',
+      title: 'Why do things get complicated?',
+      bullets: [
+        'Course management requires fragmented tracking of personal commanders’ schedules and tasks, alongside the individual progress of each and every recruit.',
+        'Commanders rely on disparate systems, Excel files, and personal notebooks to consolidate data, making it a long and cumbersome process to obtain a broad overview.',
+        'Recruit assessment varies from commander to commander, lacking consistency.',
+        'The schedule is personalized and changes dynamically for each recruit, making it difficult to ensure alignment between what the recruit understands and what the commander plans.',
+      ],
+      result: 'Waste of time and effort, information misalignment, and professional gaps discovered late in the field.',
+    },
+    targetAudience: {
+      label: 'Target Audience',
+      title: 'The Academix system serves three different levels within the training process, all of whom are highly tech-savvy individuals aged 18–23:',
+      groups: [
+        {
+          title: 'Course Commanders (The Managing Level)',
+          body: 'Require a macro-level view of all teams. They need a tool that surfaces trends, gaps, and a synchronous, real-time overview without having to manually dig through data.',
+        },
+        {
+          title: 'Personal Commanders / Onboarders (The Guided Level)',
+          body: 'Manage the day-to-day routine of onboarding in the field. They need a simple, fast tool to log objective metrics and update tasks on the go.',
+        },
+        {
+          title: 'Recruits (The Learning Level)',
+          body: 'Undergo a dynamic and personalized training process. They need a clear reflection of their progress path and upcoming steps.',
+        },
+      ],
+    },
+    marketResearch: {
+      label: 'Market Research',
+      title: 'I explored learning management systems (LMS), employee onboarding software, talent management platforms, and project management systems.',
+      intro: 'What I learned?',
+      findings: [
+        {
+          number: '01',
+          title: 'Role-based workspace isolation',
+          body: 'Because complex management systems prevent cognitive overload by separating macro and micro views, I recommended designing a system of 5 separate dashboards that provide each command level with only the data relevant to them.',
+        },
+        {
+          number: '02',
+          title: 'Streamlined field reporting with structured tags',
+          body: 'Because employee onboarding platforms reduce administrative burden through focused forms, I recommended replacing fragmented tracking files with a fast feedback interface based on selecting strength and weakness tags.',
+        },
+        {
+          number: '03',
+          title: 'Real-time anomaly detection via smart alerts',
+          body: 'Because task management systems save managerial time by utilizing exception-based notifications, I recommended integrating prominent deviation counters and response-time metrics into the leading dashboard to instantly highlight where intervention is needed.',
+        },
+        {
+          number: '04',
+          title: 'Consolidation of quantitative and qualitative data',
+          body: 'Because talent management platforms create a complete picture by blending scores with textual context, I recommended creating dynamic feedback cards that unify numerical grades, open text, and filterable tags.',
+        },
+        {
+          number: '05',
+          title: 'Anchoring a flexible plan within a fixed timeline',
+          body: 'Because advanced learning systems maintain course structure through fixed time interfaces, I recommended embedding a permanent sidebar menu for Gantt charts and daily tasks alongside the central workflow to anchor the dynamic onboarding process.',
+        },
+      ],
+    },
+    solution: {
+      label: 'The Solution',
+      body: 'Digital web platform designed to simplify and synchronize the onboarding and training process for commanders.\nSo they can focus on what they are really good at – leading, mentoring, and developing their people.',
+      valueLabel: 'The Value',
+      values: ['Time-saving.', 'Regaining control of the situation.', 'Increasing the chances of successful training.'],
     },
     challenge: {
       label: 'The Challenge',
@@ -180,6 +258,7 @@ export const projects: CaseStudyProject[] = [
     architecture: {
       label: 'Site Architecture',
       title: 'Site Architecture',
+      iframeUrl: '/sitemap-academix.html',
     },
     highlights: {
       label: 'Design Highlights',
@@ -205,25 +284,40 @@ export const projects: CaseStudyProject[] = [
           description:
             'The dashboard provides commanders with a real time overview of recruit progress, enabling them to track individual performance, identify skill gaps, and monitor team development through integrated evaluation feeds, task tracking, and analytical performance data.',
           icon: 'person',
-          image: '/images/academix/feedback.jpg',
-          imageAlt: 'Trainee feedback dashboard showing performance scores and recent evaluations',
+          image: '/images/academix/dashboard.jpg',
+          imageAlt: 'Trainee dashboard showing personal progress overview and performance data',
         },
         {
           number: '02',
-          title: 'Scheduling Engine',
-          description: "Provides full transparency regarding the recruit's workload on any given day.",
-          icon: 'calendar',
-          image: '/images/academix/calendar.jpg',
-          imageAlt: 'Monthly calendar view of the scheduling engine showing trainee workload',
+          title: 'Feedback & Scores',
+          description: 'A consolidated feedback view that surfaces evaluation scores and qualitative reviews, giving commanders a clear picture of each trainee\'s strengths and areas for improvement.',
+          icon: 'star',
+          image: '/images/academix/feedback-scores.jpg',
+          imageAlt: 'Feedback page showing trainee scores and evaluation summaries',
         },
         {
           number: '03',
-          title: 'Content Management',
-          description:
-            'The platform features an intuitive interface that allows management to organize training content into distinct learning pillars and update curricula in real time.',
+          title: 'Scheduling Engine',
+          description: "Provides full transparency regarding the recruit's workload on any given day.",
+          icon: 'calendar',
+          image: '/images/academix/calendar-new.png',
+          imageAlt: 'Monthly calendar view of the scheduling engine showing trainee workload',
+        },
+        {
+          number: '04',
+          title: 'Teams — Commander View',
+          description: 'Gives commanders a bird\'s-eye view of their entire team, enabling quick identification of performance trends and individual needs across the cohort.',
           icon: 'layers',
-          image: '/images/academix/courses.jpg',
-          imageAlt: 'Course management view showing cohort breakdown, NPS scores, and training metrics',
+          image: '/images/academix/teams-commander.png',
+          imageAlt: 'Teams view from the perspective of a unit commander showing cohort overview',
+        },
+        {
+          number: '05',
+          title: 'Drag-to-Schedule',
+          description: 'An intuitive drag-and-drop interface that allows coordinators to assign events and training sessions with minimal friction, reducing scheduling errors and saving time.',
+          icon: 'layers',
+          image: '/images/academix/drag-schedule.png',
+          imageAlt: 'Drag-and-drop event scheduling interface for managing training sessions',
         },
       ],
     },
@@ -244,6 +338,9 @@ export const projects: CaseStudyProject[] = [
     headline: 'Your benefits, tracked and transparent: bridging the gap to full realization',
     subtitle: 'Native Mobile Application for Managing and Utilizing Rights and Financial Benefits',
     tags: ['Product Strategy', 'Mobile App'],
+    heroBg: '/images/rimon/rimonTop.jpg',
+    heroBgMobile: '/images/rimon/rimonMobile.jpg',
+    heroBgDarkText: true,
     rimon: {
       problem: {
         label: 'The Problem',
@@ -379,6 +476,8 @@ export const projects: CaseStudyProject[] = [
     headline: 'Transforming static quizzes into an interactive gaming experience',
     tags: ['Gamification', 'EdTech'],
     heroImage: '/images/home/NEON.jpg',
+    heroBg: '/images/neon/neonTop.jpg',
+    heroBgMobile: '/images/neon/neonMobile.jpg',
     problem: {
       label: 'The Problem',
       title: 'Educators struggle to drive effective student engagement and motivation through traditional text based learning methods.',
