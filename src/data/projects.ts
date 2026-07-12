@@ -1,4 +1,4 @@
-export type FeatureIcon = 'person' | 'calendar' | 'layers' | 'sun' | 'play' | 'check' | 'heart';
+export type FeatureIcon = 'person' | 'calendar' | 'layers' | 'sun' | 'play' | 'check' | 'heart' | 'star';
 
 export interface BulletPoint {
   title: string;
