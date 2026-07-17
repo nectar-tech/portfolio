@@ -7,7 +7,7 @@ import ProjectCard from '@/components/ProjectCard';
 
 export default function Home() {
   useEffect(() => {
-    document.title = `${personal.name} — ${personal.title}`;
+    document.title = `${personal.name} - ${personal.title}`;
   }, []);
 
   return (
@@ -16,17 +16,17 @@ export default function Home() {
 
       {/* HERO */}
       <section className="pb-10 w-full animate-fadeUp">
-        <div className="relative overflow-hidden min-h-[480px] md:min-h-[600px] flex items-center">
+        <div className="relative overflow-hidden flex flex-col md:min-h-[600px] md:flex-row md:items-center md:justify-start">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-[280px] object-cover object-right md:absolute md:inset-0 md:h-full md:object-center"
             src="/images/home/header-video.mp4"
           />
-          <div className="relative z-10 px-6 md:px-[60px] py-8 md:py-12 max-w-[55%]">
-            <p className="text-xl md:text-[22px] text-gray-900 font-light max-w-[420px]">
+          <div className="relative z-10 px-6 md:pl-[60px] md:pr-0 py-8 max-w-full md:max-w-[55%] md:mr-auto">
+            <p className="text-xl md:text-[22px] text-gray-900 font-light max-w-full md:max-w-[420px]">
               <span className="block text-[28px] md:text-[34px] leading-[1.3]">I'm Nectar</span>
               <span className="block text-[38px] md:text-[46px] font-semibold leading-[1.1] text-gray-900">a Product Designer</span>
               <span className="block mt-3 leading-[1.75]">focused on digital products, merging a solid background in user engagement and gaming with hands-on UI/UX execution</span>

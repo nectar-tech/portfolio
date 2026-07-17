@@ -14,7 +14,13 @@ export default function BulletItem({ title, body, icon, iconSize = 'w-16 h-16' }
         <span className="w-1.5 h-1.5 rounded-full bg-brandOrange shrink-0 mt-2.5" />
       )}
       <div>
-        {title && <strong className="text-mainText font-semibold">{title}: </strong>}{body}
+        {title && (
+          <strong className="text-mainText font-semibold text-lg">
+            {title}
+            {body ? ': ' : ''}
+          </strong>
+        )}
+        {body}
       </div>
     </li>
   );

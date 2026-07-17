@@ -6,7 +6,7 @@ import ChevronIcon from '@/components/ChevronIcon';
 
 export default function NotFound() {
   useEffect(() => {
-    document.title = 'Page Not Found — Nectar Shavit';
+    document.title = 'Page Not Found - Nectar Shavit';
   }, []);
 
   return (

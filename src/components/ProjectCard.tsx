@@ -37,7 +37,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <p className="text-[22px] lg:text-[28px] font-bold text-mainText leading-snug tracking-tight whitespace-pre-line line-clamp-3">{headline}</p>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <span key={tag} className="inline-flex items-center px-3.5 py-1 rounded-full text-[12px] font-medium text-muted bg-[#F7F7F7]">
+            <span key={tag} className="inline-flex items-center px-3.5 py-1 rounded-full text-[12px] font-medium text-muted bg-[#F7F7F7] opacity-70">
               {tag}
             </span>
           ))}

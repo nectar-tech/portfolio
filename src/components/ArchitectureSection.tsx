@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useState, useLayoutEffect } from 'react';
 import SectionHeader from '@/components/SectionHeader';
 import ImagePlaceholder from '@/components/ImagePlaceholder';
 import type { CaseStudyProject } from '@/data/projects';
@@ -7,38 +7,41 @@ interface ArchitectureSectionProps {
   data: CaseStudyProject['architecture'];
 }
 
+// Natural size of the bundled sitemap diagram (fixed by the SVG it renders).
+const DIAGRAM_W = 2520;
+const DIAGRAM_H = 1320;
+
 function AutoIframe({ src, title }: { src: string; title: string }) {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
 
-  useEffect(() => {
-    const iframe = iframeRef.current;
-    if (!iframe) return;
-
-    function resize() {
-      try {
-        const doc = iframe!.contentDocument || iframe!.contentWindow?.document;
-        if (!doc) return;
-        const h = doc.documentElement.scrollHeight || doc.body.scrollHeight;
-        if (h > 0) iframe!.style.height = h + 'px';
-      } catch {
-        // cross-origin — fall back to fixed height
-      }
-    }
-
-    iframe.addEventListener('load', resize);
-    return () => iframe.removeEventListener('load', resize);
+  useLayoutEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+    const ro = new ResizeObserver(([entry]) => setWidth(entry.contentRect.width));
+    ro.observe(wrapper);
+    return () => ro.disconnect();
   }, []);
 
+  const scale = width > 0 ? width / DIAGRAM_W : 0;
+
   return (
-    <iframe
-      ref={iframeRef}
-      src={src}
-      title={title}
-      scrolling="no"
-      className="w-full block border-0"
-      style={{ height: '480px', overflow: 'hidden' }}
-      loading="lazy"
-    />
+    <div ref={wrapperRef} className="w-full relative overflow-hidden" style={{ height: scale > 0 ? DIAGRAM_H * scale : 480 }}>
+      <iframe
+        src={src}
+        title={title}
+        scrolling="no"
+        className="absolute top-0 left-0 border-0 pointer-events-none"
+        style={{
+          width: DIAGRAM_W,
+          height: DIAGRAM_H,
+          transform: `scale(${scale || 1})`,
+          transformOrigin: 'top left',
+          visibility: scale > 0 ? 'visible' : 'hidden',
+        }}
+        loading="lazy"
+      />
+    </div>
   );
 }
 
@@ -50,12 +53,15 @@ export default function ArchitectureSection({ data }: ArchitectureSectionProps) 
         {data.iframeUrl ? (
           <AutoIframe src={data.iframeUrl} title="Site architecture diagram" />
         ) : data.image ? (
-          <img
-            src={data.image}
-            alt={data.imageAlt ?? 'Site architecture diagram'}
-            className="w-full block"
-            loading="lazy"
-          />
+          <picture>
+            {data.imageMobile && <source media="(max-width: 767px)" srcSet={data.imageMobile} />}
+            <img
+              src={data.image}
+              alt={data.imageAlt ?? 'Site architecture diagram'}
+              className="w-full block"
+              loading="lazy"
+            />
+          </picture>
         ) : (
           <ImagePlaceholder minHeight="min-h-[320px]" />
         )}

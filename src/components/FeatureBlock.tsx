@@ -60,6 +60,7 @@ const icons: Record<FeatureIcon, ReactNode> = {
 interface FeatureBlockProps {
   screen: FeatureScreen;
   hideHeader?: boolean;
+  isFirst?: boolean;
 }
 
 function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
@@ -142,9 +143,9 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
   );
 }
 
-export default function FeatureBlock({ screen, hideHeader }: FeatureBlockProps) {
+export default function FeatureBlock({ screen, hideHeader, isFirst }: FeatureBlockProps) {
   return (
-    <div className="mt-12 pt-12 first:border-0 first:mt-0 first:pt-0">
+    <div className={isFirst ? '' : 'mt-12 pt-12'}>
       {!hideHeader && (
         <div className="flex items-start gap-5 mb-5">
           <div className="w-[52px] h-[52px] rounded-full bg-brandLight/20 flex items-center justify-center shrink-0 mt-0.5">
@@ -159,7 +160,12 @@ export default function FeatureBlock({ screen, hideHeader }: FeatureBlockProps) 
       {hideHeader && screen.title && (
         <h3 className="text-[22px] font-extrabold text-mainText tracking-tight mb-5">{screen.title}</h3>
       )}
-      <p className="text-lg text-muted leading-[1.75] max-w-[700px] mb-6">{screen.description}</p>
+      {screen.descriptionTitle && (
+        <h4 className="text-lg font-bold text-mainText tracking-tight mb-2">{screen.descriptionTitle}</h4>
+      )}
+      {screen.description && (
+        <p className="text-lg text-muted leading-[1.75] max-w-[700px] mb-6">{screen.description}</p>
+      )}
       {screen.images && screen.images.length > 0 ? (
         <ImageCarousel images={screen.images} />
       ) : screen.image ? (
@@ -176,6 +182,22 @@ export default function FeatureBlock({ screen, hideHeader }: FeatureBlockProps) 
           <ImagePlaceholder minHeight="min-h-[320px]" />
         </div>
       )}
+      {screen.subSections?.map((sub) => (
+        <div key={sub.title} className="mt-8">
+          <h4 className="text-lg font-bold text-mainText tracking-tight mb-4">{sub.title}</h4>
+          {sub.description && (
+            <p className="text-lg text-muted leading-[1.75] max-w-[700px] mb-6">{sub.description}</p>
+          )}
+          <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)] group">
+            <img
+              className="w-full block transition-transform duration-500 group-hover:scale-[1.015]"
+              src={sub.image}
+              alt={sub.imageAlt}
+              loading="lazy"
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

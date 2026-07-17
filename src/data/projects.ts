@@ -9,10 +9,12 @@ export interface FeatureScreen {
   number: string;
   title: string;
   description: string;
+  descriptionTitle?: string;
   icon: FeatureIcon;
   image?: string;
   imageAlt?: string;
   images?: { src: string; alt: string }[];
+  subSections?: { title: string; description?: string; image: string; imageAlt: string }[];
 }
 
 export interface StrategyCard {
@@ -52,6 +54,7 @@ export interface RoadmapItem {
   title: string;
   body: string;
   badge: string;
+  icon?: 'family' | 'money';
 }
 
 export interface RimonData {
@@ -126,13 +129,13 @@ export interface CaseStudyProject {
   problem?: { label: string; title: string; body?: string };
   causes?: { label: string; title: string; bullets: string[]; result: string };
   targetAudience?: { label: string; title: string; groups: { title: string; body: string }[] };
-  marketResearch?: { label: string; title: string; intro: string; findings: { number: string; title: string; body: string }[] };
+  marketResearch?: { label: string; title: string; findings: { number: string; title: string; body: string }[] };
   solution?: { label: string; body: string; valueLabel: string; values: string[] };
 
   // Neon Odyssey sections
   rootCauses?: { label: string; title: string; bullets: BulletPoint[] };
   consequences?: { label: string; title: string; bullets: BulletPoint[] };
-  overview?: { label: string; title: string; body: string };
+  overview?: { label: string; title: string; body: string; boldLead?: string };
   strategy?: { label: string; title: string; cards: StrategyCard[] };
   research?: { label: string; title: string; body?: string; bullets: BulletPoint[] };
   game?: { label: string; title: string; bullets: BulletPoint[] };
@@ -145,7 +148,7 @@ export interface CaseStudyProject {
   targetAudienceImage?: string;
 
   challenge: { label: string; title: string; bullets: BulletPoint[] };
-  architecture: { label: string; title: string; image?: string; imageAlt?: string; iframeUrl?: string };
+  architecture: { label: string; title: string; image?: string; imageMobile?: string; imageAlt?: string; iframeUrl?: string };
   highlights: { label: string; title: string; bullets: BulletPoint[] };
   keyFeatures: { label: string; title: string; screens: FeatureScreen[] };
   impact: { label: string; title: string; body: string };
@@ -166,6 +169,7 @@ export const projects: CaseStudyProject[] = [
     heroImagePosition: 'right',
     heroBg: '/images/academix/acaTop.jpg',
     heroBgMobile: '/images/academix/acaTopMobile.jpg',
+    heroBgDarkText: true,
     problem: {
       label: 'The Problem',
       title: 'Commanders struggle to track recruit progress throughout the training and onboarding process.',
@@ -202,7 +206,6 @@ export const projects: CaseStudyProject[] = [
     marketResearch: {
       label: 'Market Research',
       title: 'I explored learning management systems (LMS), employee onboarding software, talent management platforms, and project management systems.',
-      intro: 'What I learned?',
       findings: [
         {
           number: '01',
@@ -218,16 +221,6 @@ export const projects: CaseStudyProject[] = [
           number: '03',
           title: 'Real-time anomaly detection via smart alerts',
           body: 'Because task management systems save managerial time by utilizing exception-based notifications, I recommended integrating prominent deviation counters and response-time metrics into the leading dashboard to instantly highlight where intervention is needed.',
-        },
-        {
-          number: '04',
-          title: 'Consolidation of quantitative and qualitative data',
-          body: 'Because talent management platforms create a complete picture by blending scores with textual context, I recommended creating dynamic feedback cards that unify numerical grades, open text, and filterable tags.',
-        },
-        {
-          number: '05',
-          title: 'Anchoring a flexible plan within a fixed timeline',
-          body: 'Because advanced learning systems maintain course structure through fixed time interfaces, I recommended embedding a permanent sidebar menu for Gantt charts and daily tasks alongside the central workflow to anchor the dynamic onboarding process.',
         },
       ],
     },
@@ -258,7 +251,9 @@ export const projects: CaseStudyProject[] = [
     architecture: {
       label: 'Site Architecture',
       title: 'Site Architecture',
-      iframeUrl: '/sitemap-academix.html',
+      image: '/images/academix/sitemap-desktop.jpg',
+      imageMobile: '/images/academix/sitemap-mobile.jpg',
+      imageAlt: 'Academix site architecture map',
     },
     highlights: {
       label: 'Design Highlights',
@@ -281,22 +276,31 @@ export const projects: CaseStudyProject[] = [
         {
           number: '01',
           title: 'Trainee Overview',
+          descriptionTitle: 'Soldier Personal Dashboard',
           description:
-            'The dashboard provides commanders with a real time overview of recruit progress, enabling them to track individual performance, identify skill gaps, and monitor team development through integrated evaluation feeds, task tracking, and analytical performance data.',
+            'The personal dashboard provides soldiers with a real time overview of their course progress, enabling them to manage their daily schedule, track test performance, and identify personal strengths and learning gaps through integrated data and feedback.',
           icon: 'person',
           image: '/images/academix/dashboard.jpg',
           imageAlt: 'Trainee dashboard showing personal progress overview and performance data',
+          subSections: [
+            {
+              title: 'Teams - Commander View',
+              description:
+                'The dashboard provides commanders with a real time overview of recruit progress, enabling them to track individual performance, identify skill gaps, and monitor team development through integrated evaluation feeds, task tracking, and analytical performance data.',
+              image: '/images/academix/teams-commander.png',
+              imageAlt: 'Teams view from the perspective of a unit commander showing cohort overview',
+            },
+            {
+              title: 'Feedback & Scores',
+              description:
+                'This dashboard centralizes the latest feedback for all soldiers in the unit, providing aggregated performance statistics. The interface allows commanders to gain a quick overview of team status, identify trends, and derive actionable insights to drive continuous improvement.',
+              image: '/images/academix/feedback-scores.jpg',
+              imageAlt: 'Feedback page showing trainee scores and evaluation summaries',
+            },
+          ],
         },
         {
           number: '02',
-          title: 'Feedback & Scores',
-          description: 'A consolidated feedback view that surfaces evaluation scores and qualitative reviews, giving commanders a clear picture of each trainee\'s strengths and areas for improvement.',
-          icon: 'star',
-          image: '/images/academix/feedback-scores.jpg',
-          imageAlt: 'Feedback page showing trainee scores and evaluation summaries',
-        },
-        {
-          number: '03',
           title: 'Scheduling Engine',
           description: "Provides full transparency regarding the recruit's workload on any given day.",
           icon: 'calendar',
@@ -304,15 +308,7 @@ export const projects: CaseStudyProject[] = [
           imageAlt: 'Monthly calendar view of the scheduling engine showing trainee workload',
         },
         {
-          number: '04',
-          title: 'Teams — Commander View',
-          description: 'Gives commanders a bird\'s-eye view of their entire team, enabling quick identification of performance trends and individual needs across the cohort.',
-          icon: 'layers',
-          image: '/images/academix/teams-commander.png',
-          imageAlt: 'Teams view from the perspective of a unit commander showing cohort overview',
-        },
-        {
-          number: '05',
+          number: '03',
           title: 'Drag-to-Schedule',
           description: 'An intuitive drag-and-drop interface that allows coordinators to assign events and training sessions with minimal friction, reducing scheduling errors and saving time.',
           icon: 'layers',
@@ -334,8 +330,8 @@ export const projects: CaseStudyProject[] = [
   {
     id: 'rimon',
     client: 'RIMON',
-    year: '2025',
-    headline: 'Your benefits, tracked and transparent: bridging the gap to full realization',
+    year: '2026',
+    headline: 'Closing the gap to your full entitlements',
     subtitle: 'Native Mobile Application for Managing and Utilizing Rights and Financial Benefits',
     tags: ['Product Strategy', 'Mobile App'],
     heroBg: '/images/rimon/rimonTop.jpg',
@@ -385,7 +381,7 @@ export const projects: CaseStudyProject[] = [
         title: "Who We're Designing For",
         primaryTarget: 'Reservists, victims of hostilities, and individuals with disabilities who are eligible for a wide range of financial benefits and services (treatments, vacations, equipment, etc.) but struggle to track and actually utilize them.',
         stats: [
-          { number: '1.25M', body: 'people recognized as disabled by the National Insurance Institute as of 2022 — approximately 20% of the population' },
+          { number: '1.25M', body: 'people recognized as disabled by the National Insurance Institute as of 2022 - approximately 20% of the population' },
           { number: '89,712', body: 'civilian victims of hostilities in Israel, of whom 75,995 have been recognized since the October 7th disaster and throughout the war' },
         ],
         mainChallenges: [
@@ -429,7 +425,7 @@ export const projects: CaseStudyProject[] = [
         cards: [
           {
             tag: '',
-            body: 'A week later, Rimon receives a notification: "You have one month left to use your new computer benefit — don\'t miss out!" He opens the app, reviews the options, and orders a computer through one of the recommended stores. At the end of the month, he receives a summary: "You utilized 4 benefits this month with a total value of 7,500 NIS."',
+            body: 'A week later, Rimon receives a notification: "You have one month left to use your new computer benefit - don\'t miss out!" He opens the app, reviews the options, and orders a computer through one of the recommended stores. At the end of the month, he receives a summary: "You utilized 4 benefits this month with a total value of 7,500 NIS."',
           },
         ],
         image: '/images/rimon/notification.png',
@@ -448,11 +444,13 @@ export const projects: CaseStudyProject[] = [
             title: 'Family Entitlement Management',
             body: 'Sync and combine benefits between spouses for smart, unified household budgeting.',
             badge: 'Planned',
+            icon: 'family',
           },
           {
             title: 'Auto Reimbursement',
             body: 'Connect to financial systems to track open claims and notify users the moment funds are deposited.',
             badge: 'Planned',
+            icon: 'money',
           },
         ],
       },
@@ -474,7 +472,7 @@ export const projects: CaseStudyProject[] = [
     client: 'NEON ODYSSEY',
     year: '2025',
     headline: 'Transforming static quizzes into an interactive gaming experience',
-    tags: ['Gamification', 'EdTech'],
+    tags: ['Gamification', 'EdTech', 'Original Artwork'],
     heroImage: '/images/home/NEON.jpg',
     heroBg: '/images/neon/neonTop.jpg',
     heroBgMobile: '/images/neon/neonMobile.jpg',
@@ -512,7 +510,8 @@ export const projects: CaseStudyProject[] = [
     overview: {
       label: 'Project Overview',
       title: 'From static quizzes to a living visual ecosystem',
-      body: 'Neon Odyssey is a dual-sided web platform designed to solve a core educational challenge: How do we turn static "True or False" quizzes into highly engaging digital experiences without causing cognitive overload?',
+      boldLead: 'I designed and illustrated',
+      body: ' Neon Odyssey, a dual-sided web platform built to solve a core educational challenge: How do we turn static "True or False" quizzes into highly engaging digital experiences without causing cognitive overload?',
     },
     strategy: {
       label: 'Product Strategy & Foundations',

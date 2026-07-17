@@ -25,7 +25,7 @@ export default function CaseStudy() {
 
   useEffect(() => {
     if (project) {
-      document.title = `${project.client} Case Study — Nectar Shavit`;
+      document.title = `${project.client} Case Study - Nectar Shavit`;
     }
   }, [project]);
 
@@ -158,7 +158,10 @@ export default function CaseStudy() {
               <div className="max-w-[1100px] mx-auto">
                 <p className={eyebrow}>{overview.label}</p>
                 <h2 className={sectionTitle}>{overview.title}</h2>
-                <p className={bodyText}>{overview.body}</p>
+                <p className={bodyText}>
+                  {overview.boldLead && <strong className="font-bold text-mainText">{overview.boldLead}</strong>}
+                  {overview.body}
+                </p>
               </div>
             </section>
           )}
@@ -177,7 +180,7 @@ export default function CaseStudy() {
               <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
                 {rootCauses && (
                   <div>
-                    <SectionHeader label={rootCauses.label} title={rootCauses.title} />
+                    <SectionHeader label={rootCauses.label} title={rootCauses.title} showTitleArrow />
                     <ul className="flex flex-col gap-3.5 mt-5">
                       {rootCauses.bullets.map((b) => (
                         <BulletItem key={b.title} title={b.title} body={b.body} />
@@ -267,8 +270,8 @@ export default function CaseStudy() {
           <section className="w-full bg-white py-16 px-6 md:px-[60px]">
             <div className="max-w-[1100px] mx-auto">
               <SectionHeader label={keyFeatures.label} title={keyFeatures.title} />
-              {keyFeatures.screens.map((screen) => (
-                <FeatureBlock key={screen.number} screen={screen} hideHeader />
+              {keyFeatures.screens.map((screen, i) => (
+                <FeatureBlock key={screen.number} screen={screen} hideHeader isFirst={i === 0} />
               ))}
             </div>
           </section>
@@ -532,9 +535,15 @@ export default function CaseStudy() {
                     {rimon.roadmap.items.map((item) => (
                       <div key={item.title} className="flex items-center gap-5 bg-cream rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] px-7 py-6">
                         <div className="w-[52px] h-[52px] rounded-full bg-brandLight/20 flex items-center justify-center shrink-0">
-                          <svg className="w-5 h-5 stroke-brandOrange fill-none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                          </svg>
+                          {item.icon === 'money' ? (
+                            <svg className="w-5 h-5 stroke-brandOrange fill-none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M23 4v6h-6" /><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                            </svg>
+                          ) : (
+                            <svg className="w-5 h-5 stroke-brandOrange fill-none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                          )}
                         </div>
                         <div className="flex-1">
                           <h4 className="text-base font-bold text-mainText mb-1">{item.title}</h4>
@@ -604,8 +613,7 @@ export default function CaseStudy() {
             <section className="w-full bg-white py-16 px-6 md:px-[60px]">
               <div className="max-w-[700px] mx-auto">
                 <SectionHeader label={marketResearch.label} title={marketResearch.title} />
-                <p className="text-lg font-semibold text-mainText mt-6 mb-5">{marketResearch.intro}</p>
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 mt-6">
                   {marketResearch.findings.map((f) => (
                     <div key={f.number} className="flex gap-5 items-start">
                       <span className="text-[28px] font-black text-brandOrange/30 leading-none shrink-0 w-10">{f.number}</span>
@@ -650,8 +658,8 @@ export default function CaseStudy() {
           <section className="w-full bg-white py-16 px-6 md:px-[60px]">
             <div className="max-w-[1100px] mx-auto">
               <SectionHeader label={keyFeatures.label} title={keyFeatures.title} />
-              {keyFeatures.screens.map((screen) => (
-                <FeatureBlock key={screen.number} screen={screen} />
+              {keyFeatures.screens.map((screen, i) => (
+                <FeatureBlock key={screen.number} screen={screen} isFirst={i === 0} />
               ))}
             </div>
           </section>
