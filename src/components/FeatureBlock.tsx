@@ -84,7 +84,7 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
 
   return (
     <div className="relative">
-      <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
+      <div className="rounded-[16px] md:rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
         <div
           className="flex transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(-${index * 100}%)` }}
@@ -148,7 +148,7 @@ export default function FeatureBlock({ screen, hideHeader, isFirst }: FeatureBlo
     <div className={isFirst ? '' : 'mt-12 pt-12'}>
       {!hideHeader && (
         <div className="flex items-start gap-5 mb-5">
-          <div className="w-[52px] h-[52px] rounded-full bg-brandLight/20 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-[52px] h-[52px] rounded-full bg-cream flex items-center justify-center shrink-0 mt-0.5">
             {icons[screen.icon]}
           </div>
           <div className="flex flex-col gap-0.5">
@@ -169,7 +169,7 @@ export default function FeatureBlock({ screen, hideHeader, isFirst }: FeatureBlo
       {screen.images && screen.images.length > 0 ? (
         <ImageCarousel images={screen.images} />
       ) : screen.image ? (
-        <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)] group">
+        <div className="rounded-[16px] md:rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)] group">
           <img
             className="w-full block transition-transform duration-500 group-hover:scale-[1.015]"
             src={screen.image}
@@ -178,7 +178,7 @@ export default function FeatureBlock({ screen, hideHeader, isFirst }: FeatureBlo
           />
         </div>
       ) : (
-        <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
+        <div className="rounded-[16px] md:rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
           <ImagePlaceholder minHeight="min-h-[320px]" />
         </div>
       )}
@@ -188,7 +188,7 @@ export default function FeatureBlock({ screen, hideHeader, isFirst }: FeatureBlo
           {sub.description && (
             <p className="text-lg text-muted leading-[1.75] max-w-[700px] mb-6">{sub.description}</p>
           )}
-          <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)] group">
+          <div className="rounded-[16px] md:rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)] group">
             <img
               className="w-full block transition-transform duration-500 group-hover:scale-[1.015]"
               src={sub.image}

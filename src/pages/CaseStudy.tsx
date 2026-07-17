@@ -78,12 +78,10 @@ export default function CaseStudy() {
               </div>
             </div>
           )}
-          {/* Desktop: background image with overlaid text */}
-          <div
-            className="hero-bg-section relative w-full min-h-[560px] flex-col justify-center hidden md:flex"
-            style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-          >
-          <div className="relative z-10 px-6 md:px-[60px] py-12 max-w-[520px]">
+          {/* Desktop: full-width image, cropped from the sides only if needed */}
+          <div className="hero-bg-section relative w-full min-h-[560px] hidden md:block">
+          <img src={heroBg} alt={`${client} hero`} className="absolute inset-0 w-full h-full object-cover object-right" />
+          <div className="relative z-10 flex flex-col justify-center h-full px-6 md:px-[60px] py-12 max-w-[520px]">
             <Link
               to="/"
               className={`inline-flex items-center gap-1.5 text-sm font-medium no-underline mb-8 transition-colors duration-200 ${heroBgDarkText ? 'text-mainText/70 hover:text-mainText' : 'text-white/70 hover:text-white'}`}
@@ -140,7 +138,7 @@ export default function CaseStudy() {
 
           {/* HERO IMAGE */}
           <div className="w-full max-w-[1100px] mx-auto px-6 md:px-[60px] animate-fadeUpDelayed">
-            <div className="rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
+            <div className="rounded-[16px] md:rounded-[30px] overflow-hidden bg-cardBg shadow-[0_5px_6px_rgba(0,0,0,0.11)]">
               {heroImage ? (
                 <img src={heroImage} alt={`${client} hero`} className="w-full block" loading="lazy" />
               ) : (
@@ -227,7 +225,7 @@ export default function CaseStudy() {
                 {research.body && <p className={`${bodyText} mt-4 mb-2`}>{research.body}</p>}
                 <ul className="flex flex-col gap-3.5 mt-5">
                   {research.bullets.map((b) => (
-                    <BulletItem key={b.title} title={b.title} body={b.body} icon="/images/neon-odyssey/neon-icon-star.png" iconSize="w-5 h-5" />
+                    <BulletItem key={b.title} title={b.title} body={b.body} />
                   ))}
                 </ul>
               </div>
@@ -240,7 +238,7 @@ export default function CaseStudy() {
                 <SectionHeader label={game.label} title={game.title} />
                 <ul className="flex flex-col gap-3.5 mt-5">
                   {game.bullets.map((b, i) => (
-                    <BulletItem key={i} title={b.title} body={b.body} icon="/images/neon-odyssey/neon-icon-star.png" iconSize="w-5 h-5" />
+                    <BulletItem key={i} title={b.title} body={b.body} />
                   ))}
                 </ul>
               </div>
@@ -252,7 +250,7 @@ export default function CaseStudy() {
               <div className="max-w-[1100px] mx-auto">
                 <SectionHeader label={narrative.label} title={narrative.title} />
                 <p className={`${bodyText} mt-4`}>{narrative.intro}</p>
-                <div className="mt-9 rounded-[30px] overflow-hidden shadow-[0_5px_6px_rgba(0,0,0,0.11)] grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-0" style={{ background: 'linear-gradient(to right, #1E1E1E, #313790)' }}>
+                <div className="mt-9 rounded-[16px] md:rounded-[30px] overflow-hidden shadow-[0_5px_6px_rgba(0,0,0,0.11)] grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-0" style={{ background: 'linear-gradient(to right, #1E1E1E, #313790)' }}>
                   <div className="flex items-center justify-center pb-0 md:items-stretch">
                     <img src="/images/neon-odyssey/logoIcon.png" alt="Neon Odyssey mosquito character" className="w-full object-contain max-h-[120px] md:max-h-none" />
                   </div>
@@ -389,9 +387,15 @@ export default function CaseStudy() {
                   <h2 className={sectionTitle}>{rimon.targetAudience.title}</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                     <div className="bg-white rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] overflow-hidden">
+                      <img src="/images/rimon/rimonTargetDesktop.jpg" alt="Rimon primary target audience" className="w-full block md:hidden" loading="lazy" />
                       <div className="p-8">
                         <p className={cardLabel}>Primary Target</p>
                         <p className={smallBody}>{rimon.targetAudience.primaryTarget}</p>
+                      </div>
+                      <div className="hidden md:block px-8 pb-8">
+                        <div className="rounded-[16px] overflow-hidden aspect-[16/10]">
+                          <img src="/images/rimon/rimonTargetDesktop.jpg" alt="Rimon primary target audience" className="w-full h-full object-cover block" loading="lazy" />
+                        </div>
                       </div>
                     </div>
                     <div className="flex flex-col gap-5">
@@ -434,7 +438,7 @@ export default function CaseStudy() {
                   </div>
                   <div>
                     <p className={eyebrow}>Goal</p>
-                    <p className="text-lg font-semibold text-mainText leading-[1.6]">{rimon.targetAudience.goal}</p>
+                    <p className="text-xl md:text-2xl font-semibold text-mainText leading-[1.6]">{rimon.targetAudience.goal}</p>
                   </div>
                 </div>
               </section>
@@ -445,7 +449,7 @@ export default function CaseStudy() {
                   <p className={eyebrow}>{rimon.successMetrics.label}</p>
                   <h2 className={sectionTitle}>{rimon.successMetrics.title}</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="bg-cream rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] p-8">
+                    <div className="bg-white rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] p-8">
                       <p className={cardLabel}>Initial Metrics</p>
                       <ul className="flex flex-col gap-2.5 mt-2">
                         {rimon.successMetrics.initial.map((m) => (
@@ -456,7 +460,7 @@ export default function CaseStudy() {
                         ))}
                       </ul>
                     </div>
-                    <div className="bg-cream rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] p-8">
+                    <div className="bg-white rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] p-8">
                       <p className={cardLabel}>Advanced Metrics</p>
                       <ul className="flex flex-col gap-2.5 mt-2">
                         {rimon.successMetrics.advanced.map((m) => (
@@ -472,14 +476,14 @@ export default function CaseStudy() {
               </section>
 
               {/* KEY SCREENS */}
-              <section className="w-full py-16 px-6 md:px-[60px]">
+              <section className="w-full bg-white py-16 px-6 md:px-[60px]">
                 <div className="max-w-[1100px] mx-auto">
                   <p className={eyebrow}>{rimon.keyScreens.label}</p>
                   <h2 className={sectionTitle}>{rimon.keyScreens.title}</h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                     {rimon.keyScreens.screens.map((s) => (
-                      <div key={s.label}>
-                        <div className="bg-white rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] overflow-hidden">
+                      <div key={s.label} className="max-w-[240px] mx-auto w-full">
+                        <div className="bg-white rounded-[16px] md:rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] overflow-hidden">
                           {s.image ? (
                             <img src={s.image} alt={s.imageAlt ?? s.label} className="w-full block" loading="lazy" />
                           ) : (
@@ -491,26 +495,6 @@ export default function CaseStudy() {
                         <p className="text-sm font-semibold text-muted text-center mt-3.5">{s.label}</p>
                       </div>
                     ))}
-                  </div>
-                </div>
-              </section>
-
-              {/* PUSH NOTIFICATION */}
-              <section className="w-full bg-white py-16 px-6 md:px-[60px]">
-                <div className="max-w-[1100px] mx-auto">
-                  <p className={eyebrow}>{rimon.scenarios.label}</p>
-                  <h2 className={sectionTitle}>{rimon.scenarios.title}</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
-                    <div className="bg-cream rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] p-8">
-                      <p className={bodyText}>{rimon.scenarios.cards[0].body}</p>
-                    </div>
-                    <div className="bg-cream rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] overflow-hidden">
-                      {rimon.scenarios.image ? (
-                        <img src={rimon.scenarios.image} alt={rimon.scenarios.imageAlt ?? ''} className="w-full block" loading="lazy" />
-                      ) : (
-                        <ImagePlaceholder minHeight="min-h-[280px]" />
-                      )}
-                    </div>
                   </div>
                 </div>
               </section>
@@ -533,23 +517,26 @@ export default function CaseStudy() {
                   <h2 className={sectionTitle}>{rimon.roadmap.title}</h2>
                   <div className="flex flex-col gap-4 mt-8">
                     {rimon.roadmap.items.map((item) => (
-                      <div key={item.title} className="flex items-center gap-5 bg-cream rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] px-7 py-6">
-                        <div className="w-[52px] h-[52px] rounded-full bg-brandLight/20 flex items-center justify-center shrink-0">
-                          {item.icon === 'money' ? (
-                            <svg className="w-5 h-5 stroke-brandOrange fill-none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M23 4v6h-6" /><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
-                            </svg>
-                          ) : (
-                            <svg className="w-5 h-5 stroke-brandOrange fill-none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                          )}
+                      <div key={item.title} className="flex flex-col sm:flex-row sm:items-center gap-5 bg-cream rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] px-7 py-6">
+                        <div className="flex items-center gap-5">
+                          <div className="w-[52px] h-[52px] rounded-full bg-white flex items-center justify-center shrink-0">
+                            {item.icon === 'money' ? (
+                              <svg className="w-5 h-5 stroke-brandOrange fill-none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M23 4v6h-6" /><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                              </svg>
+                            ) : (
+                              <svg className="w-5 h-5 stroke-brandOrange fill-none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                              </svg>
+                            )}
+                          </div>
+                          <span className="sm:hidden text-sm font-bold tracking-widest uppercase text-brandOrange bg-white px-3.5 py-1.5 rounded-full whitespace-nowrap">{item.badge}</span>
                         </div>
                         <div className="flex-1">
                           <h4 className="text-base font-bold text-mainText mb-1">{item.title}</h4>
                           <p className={smallBody}>{item.body}</p>
                         </div>
-                        <span className="text-sm font-bold tracking-widest uppercase text-brandOrange bg-brandLight/20 px-3.5 py-1.5 rounded-full whitespace-nowrap">{item.badge}</span>
+                        <span className="hidden sm:inline-block text-sm font-bold tracking-widest uppercase text-brandOrange bg-white px-3.5 py-1.5 rounded-full whitespace-nowrap">{item.badge}</span>
                       </div>
                     ))}
                   </div>
@@ -633,7 +620,15 @@ export default function CaseStudy() {
             <section className="w-full py-16 px-6 md:px-[60px]">
               <div className="max-w-[700px] mx-auto">
                 <p className={eyebrow}>{solution.label}</p>
-                <p className="text-[22px] md:text-[26px] font-bold text-mainText leading-[1.6] mb-8 whitespace-pre-line">{solution.body}</p>
+                <p className="text-[22px] md:text-[26px] font-bold text-mainText leading-[1.6] whitespace-pre-line">{solution.body}</p>
+              </div>
+            </section>
+          )}
+
+          {/* ACADEMIX - The Value */}
+          {solution && (
+            <section className="w-full bg-white py-16 px-6 md:px-[60px]">
+              <div className="max-w-[700px] mx-auto">
                 <p className="text-lg font-bold text-mainText mb-4">{solution.valueLabel}</p>
                 <ul className="flex flex-col gap-3">
                   {solution.values.map((v, i) => (
@@ -648,7 +643,7 @@ export default function CaseStudy() {
           )}
 
           {/* ACADEMIX - Architecture */}
-          <section className="w-full bg-white py-16 px-6 md:px-[60px]">
+          <section className="w-full bg-cream py-16 px-6 md:px-[60px]">
             <div className="max-w-[1100px] mx-auto">
               <ArchitectureSection data={architecture} />
             </div>
@@ -668,19 +663,19 @@ export default function CaseStudy() {
       )}
 
       {/* FOOTER NAV */}
-      <nav className="bg-cream px-6 md:px-[60px] py-10 flex items-center justify-between mt-auto border-b border-brandBorder">
+      <nav className="bg-cream px-6 md:px-[60px] py-6 md:py-10 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between mt-auto border-b border-brandBorder">
         <Link
           to="/"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity whitespace-nowrap"
         >
           <ChevronIcon direction="left" />
           All Projects
         </Link>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 md:gap-6">
           {footerNav.prev && (
             <Link
               to={footerNav.prev.href}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity border-r border-brandBorder pr-6"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity border-r border-brandBorder pr-3 md:pr-6 whitespace-nowrap"
             >
               <ChevronIcon direction="left" />
               {footerNav.prev.label}
@@ -689,7 +684,7 @@ export default function CaseStudy() {
           {footerNav.next && (
             <Link
               to={footerNav.next.href}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandOrange no-underline hover:opacity-70 transition-opacity whitespace-nowrap"
             >
               {footerNav.next.label}
               <ChevronIcon direction="right" />

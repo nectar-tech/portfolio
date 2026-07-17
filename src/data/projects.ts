@@ -187,7 +187,7 @@ export const projects: CaseStudyProject[] = [
     },
     targetAudience: {
       label: 'Target Audience',
-      title: 'The Academix system serves three different levels within the training process, all of whom are highly tech-savvy individuals aged 18–23:',
+      title: 'The Academix system serves three different levels within the training process, all of whom are highly tech-savvy individuals aged 18-23:',
       groups: [
         {
           title: 'Course Commanders (The Managing Level)',
@@ -226,7 +226,7 @@ export const projects: CaseStudyProject[] = [
     },
     solution: {
       label: 'The Solution',
-      body: 'Digital web platform designed to simplify and synchronize the onboarding and training process for commanders.\nSo they can focus on what they are really good at – leading, mentoring, and developing their people.',
+      body: 'Digital web platform designed to simplify and synchronize the onboarding and training process for commanders.\nSo they can focus on what they are really good at - leading, mentoring, and developing their people.',
       valueLabel: 'The Value',
       values: ['Time-saving.', 'Regaining control of the situation.', 'Increasing the chances of successful training.'],
     },
@@ -414,22 +414,10 @@ export const projects: CaseStudyProject[] = [
         label: 'Key Screens',
         title: 'Onboarding',
         screens: [
-          { label: 'Personal Details', image: '/images/rimon/personal-details.png', imageAlt: 'Onboarding screen for entering personal ID number' },
-          { label: 'Personal Dashboard', image: '/images/rimon/dashboard.png', imageAlt: 'Main dashboard showing benefits overview and total savings' },
-          { label: 'Nearby Benefits', image: '/images/rimon/nearby.png', imageAlt: 'Map view of nearby benefits by location' },
+          { label: 'Intro Carousel', image: '/images/rimon/onboarding-intro-carousel.jpg', imageAlt: 'Onboarding welcome and login screen' },
+          { label: 'ID Verification', image: '/images/rimon/onboarding-id-verification.jpg', imageAlt: 'Onboarding screen for entering personal ID number' },
+          { label: 'Personalization', image: '/images/rimon/onboarding-personalization.jpg', imageAlt: 'Onboarding screen for selecting areas of interest' },
         ],
-      },
-      scenarios: {
-        label: 'Push Notification',
-        title: 'Returning to the Product',
-        cards: [
-          {
-            tag: '',
-            body: 'A week later, Rimon receives a notification: "You have one month left to use your new computer benefit - don\'t miss out!" He opens the app, reviews the options, and orders a computer through one of the recommended stores. At the end of the month, he receives a summary: "You utilized 4 benefits this month with a total value of 7,500 NIS."',
-          },
-        ],
-        image: '/images/rimon/notification.png',
-        imageAlt: 'Dashboard with a push notification prompting the user to act on a benefit',
       },
       businessModel: {
         label: 'Business Model',
