@@ -69,7 +69,7 @@ export default function Home() {
             {personal.cvUrl && (
               <a
                 href={personal.cvUrl}
-                download="CV Nectar Shavit Product Design"
+                download="Nectar Shavit Product Design CV.pdf"
                 aria-label="Download CV"
                 className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 bg-brandOrange text-cream rounded-full text-[15px] font-semibold no-underline hover:bg-[#784ECC] transition-colors duration-200"
               >

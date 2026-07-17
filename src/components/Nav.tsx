@@ -9,7 +9,7 @@ export default function Nav() {
       </Link>
       <a
         href={personal.cvUrl}
-        download="CV Nectar Shavit Product Design"
+        download="Nectar Shavit Product Design CV.pdf"
         className="inline-flex items-center gap-2 px-5 py-2 bg-brandOrange text-cream rounded-full text-[15px] font-semibold no-underline hover:bg-[#784ECC] transition-colors duration-200"
       >
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
