@@ -93,13 +93,6 @@ export interface RimonData {
     title: string;
     screens: { label: string; image?: string; imageAlt?: string }[];
   };
-  scenarios: {
-    label: string;
-    title: string;
-    cards: ScenarioCard[];
-    image?: string;
-    imageAlt?: string;
-  };
   businessModel: {
     label: string;
     title: string;
