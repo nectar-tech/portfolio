@@ -499,6 +499,30 @@ export default function CaseStudy() {
                 </div>
               </section>
 
+              {/* UI DESIGN */}
+              <section className="w-full bg-white py-16 px-6 md:px-[60px]">
+                <div className="max-w-[1100px] mx-auto">
+                  <p className={eyebrow}>{rimon.uiDesign.label}</p>
+                  <h2 className={sectionTitle}>{rimon.uiDesign.title}</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                    {rimon.uiDesign.screens.map((s) => (
+                      <div key={s.label} className="max-w-[240px] mx-auto w-full">
+                        <div className="bg-white rounded-[16px] md:rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] overflow-hidden">
+                          {s.image ? (
+                            <img src={s.image} alt={s.imageAlt ?? s.label} className="w-full block" loading="lazy" />
+                          ) : (
+                            <div className="aspect-[9/16] flex items-center justify-center">
+                              <ImagePlaceholder minHeight="min-h-full" />
+                            </div>
+                          )}
+                        </div>
+                        <p className="text-sm font-semibold text-muted text-center mt-3.5">{s.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
               {/* BUSINESS MODEL */}
               <section className="w-full py-16 px-6 md:px-[60px]">
                 <div className="max-w-[1100px] mx-auto">

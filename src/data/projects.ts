@@ -93,6 +93,11 @@ export interface RimonData {
     title: string;
     screens: { label: string; image?: string; imageAlt?: string }[];
   };
+  uiDesign: {
+    label: string;
+    title: string;
+    screens: { label: string; image?: string; imageAlt?: string }[];
+  };
   businessModel: {
     label: string;
     title: string;
@@ -404,12 +409,21 @@ export const projects: CaseStudyProject[] = [
         ],
       },
       keyScreens: {
-        label: 'Key Screens',
+        label: 'Wireframes',
         title: 'Onboarding',
         screens: [
           { label: 'Intro Carousel', image: '/images/rimon/onboarding-intro-carousel.jpg', imageAlt: 'Onboarding welcome and login screen' },
           { label: 'ID Verification', image: '/images/rimon/onboarding-id-verification.jpg', imageAlt: 'Onboarding screen for entering personal ID number' },
           { label: 'Personalization', image: '/images/rimon/onboarding-personalization.jpg', imageAlt: 'Onboarding screen for selecting areas of interest' },
+        ],
+      },
+      uiDesign: {
+        label: 'UI Design',
+        title: 'The Product Solution',
+        screens: [
+          { label: 'Main Dashboard', image: '/images/rimon/ui-main-dashboard.jpg', imageAlt: 'Main dashboard UI screen' },
+          { label: 'Claim Tracking', image: '/images/rimon/ui-claim-tracking.jpg', imageAlt: 'Claim tracking UI screen' },
+          { label: 'Benefits Map', image: '/images/rimon/ui-benefits-map.jpg', imageAlt: 'Benefits map UI screen' },
         ],
       },
       businessModel: {
