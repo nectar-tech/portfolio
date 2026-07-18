@@ -13,7 +13,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       to={`/case-study/${id}`}
-      className="group flex flex-col md:flex-row md:items-stretch md:h-[420px] rounded-[30px] overflow-hidden bg-white no-underline shadow-[0_5px_6px_rgba(0,0,0,0.11)] transition-all duration-300"
+      className="group flex flex-col md:flex-row md:items-stretch md:h-[420px] rounded-[16px] md:rounded-[30px] overflow-hidden bg-white no-underline shadow-[0_5px_6px_rgba(0,0,0,0.11)] transition-all duration-300"
     >
       <div className="w-full md:w-[55%] lg:w-[58%] md:shrink-0 overflow-hidden">
         {heroImage ? (
