@@ -288,13 +288,6 @@ export const projects: CaseStudyProject[] = [
               image: '/images/academix/teams-commander.png',
               imageAlt: 'Teams view from the perspective of a unit commander showing cohort overview',
             },
-            {
-              title: 'Feedback & Scores',
-              description:
-                'This dashboard centralizes the latest feedback for all soldiers in the unit, providing aggregated performance statistics. The interface allows commanders to gain a quick overview of team status, identify trends, and derive actionable insights to drive continuous improvement.',
-              image: '/images/academix/feedback-scores.jpg',
-              imageAlt: 'Feedback page showing trainee scores and evaluation summaries',
-            },
           ],
         },
         {
