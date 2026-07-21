@@ -20,19 +20,19 @@ export default function Home() {
           <img
             src="/images/home/hero-stamps-mobile.png"
             alt="Collection of stamp illustrations representing product design, UX, UI, learning technologies, and game design"
-            className="w-full h-auto object-contain md:hidden mt-10"
+            className="w-full h-auto object-contain md:hidden mt-5"
           />
-          <div className="px-6 md:px-[60px] py-10 md:py-24 max-w-[1200px] mx-auto w-full flex flex-col md:flex-row items-center gap-10 md:gap-16">
+          <div className="px-6 md:px-[60px] py-[10px] md:py-24 max-w-[1200px] mx-auto w-full flex flex-col md:flex-row items-center gap-10 md:gap-16">
             <div className="flex-1">
               <h1 className="text-[32px] sm:text-[40px] md:text-[52px] leading-[1.15] font-extrabold text-mainText">
                 Hi! I'm Nectar.
                 <br />
                 A product designer.
               </h1>
-              <p className="mt-6 font-handwriting text-[22px] sm:text-[26px] md:text-[30px] text-muted leading-[1.5]">
-                <span className="block border-b border-brandBorder pb-2 mb-3">Here to solve design challenges</span>
-                <span className="block border-b border-brandBorder pb-2 mb-3">and create simple, meaningful</span>
-                <span className="block border-b border-brandBorder pb-2">solutions.</span>
+              <p className="mt-6 mb-3 font-handwriting text-[22px] sm:text-[26px] md:text-[30px] text-muted leading-[1.5]">
+                <span className="block border-b border-brandBorder pb-1 mb-1.5 md:pb-2 md:mb-3">Here to solve design challenges</span>
+                <span className="block border-b border-brandBorder pb-1 mb-1.5 md:pb-2 md:mb-3">and create simple, meaningful</span>
+                <span className="block border-b border-brandBorder pb-1 md:pb-2">solutions.</span>
               </p>
             </div>
             <div className="hidden md:block flex-1 max-w-none">
