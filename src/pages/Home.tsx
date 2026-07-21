@@ -15,22 +15,33 @@ export default function Home() {
       <Nav />
 
       {/* HERO */}
-      <section className="pb-10 w-full animate-fadeUp">
-        <div className="relative overflow-hidden flex flex-col md:min-h-[600px] md:flex-row md:items-center md:justify-start">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-[280px] object-cover object-right md:absolute md:inset-0 md:h-full md:object-center"
-            src="/images/home/header-video.mp4"
+      <section className="w-full bg-white animate-fadeUp">
+        <div className="w-full">
+          <img
+            src="/images/home/hero-stamps-mobile.png"
+            alt="Collection of stamp illustrations representing product design, UX, UI, learning technologies, and game design"
+            className="w-full h-auto object-contain md:hidden mt-10"
           />
-          <div className="relative z-10 px-6 md:pl-[60px] md:pr-0 py-8 max-w-full md:max-w-[55%] md:mr-auto">
-            <p className="text-xl md:text-[22px] text-gray-900 font-light max-w-full md:max-w-[420px]">
-              <span className="block text-[28px] md:text-[34px] leading-[1.3]">I'm Nectar</span>
-              <span className="block text-[38px] md:text-[46px] font-semibold leading-[1.1] text-gray-900">a Product Designer</span>
-              <span className="block mt-3 leading-[1.75]">focused on digital products, merging a solid background in user engagement and gaming with hands-on UI/UX execution</span>
-            </p>
+          <div className="px-6 md:px-[60px] py-10 md:py-24 max-w-[1200px] mx-auto w-full flex flex-col md:flex-row items-center gap-10 md:gap-16">
+            <div className="flex-1">
+              <h1 className="text-[32px] sm:text-[40px] md:text-[52px] leading-[1.15] font-extrabold text-mainText">
+                Hi! I'm Nectar.
+                <br />
+                A product designer.
+              </h1>
+              <p className="mt-6 font-handwriting text-[22px] sm:text-[26px] md:text-[30px] text-muted leading-[1.5]">
+                <span className="block border-b border-brandBorder pb-2 mb-3">Here to solve design challenges</span>
+                <span className="block border-b border-brandBorder pb-2 mb-3">and create simple, meaningful</span>
+                <span className="block border-b border-brandBorder pb-2">solutions.</span>
+              </p>
+            </div>
+            <div className="hidden md:block flex-1 max-w-none">
+              <img
+                src="/images/home/hero-stamps.png"
+                alt="Collection of stamp illustrations representing product design, UX, UI, learning technologies, and game design"
+                className="w-full h-auto object-contain scale-150"
+              />
+            </div>
           </div>
         </div>
       </section>

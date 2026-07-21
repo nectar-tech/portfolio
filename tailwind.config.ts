@@ -17,6 +17,7 @@ export default {
       },
       fontFamily: {
         sans: ['"DM Sans"', 'sans-serif'],
+        handwriting: ['"Oooh Baby"', 'cursive'],
       },
       keyframes: {
         fadeUp: {
