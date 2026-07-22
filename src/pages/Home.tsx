@@ -30,9 +30,9 @@ export default function Home() {
                 A product designer.
               </h1>
               <p className="mt-6 mb-3 font-handwriting text-[22px] sm:text-[26px] md:text-[30px] text-muted leading-[1.5]">
-                <span className="block border-b border-brandBorder pb-1 mb-1.5 md:pb-2 md:mb-3">Here to solve design challenges</span>
-                <span className="block border-b border-brandBorder pb-1 mb-1.5 md:pb-2 md:mb-3">and create simple, meaningful</span>
-                <span className="block border-b border-brandBorder pb-1 md:pb-2">solutions.</span>
+                <span className="block border-b border-brandBorder pb-1 mb-1.5 md:pb-2 md:mb-3">I've studied how people learn,</span>
+                <span className="block border-b border-brandBorder pb-1 mb-1.5 md:pb-2 md:mb-3">how games keep them engaged,</span>
+                <span className="block border-b border-brandBorder pb-1 md:pb-2">and how good design does both invisibly.</span>
               </p>
             </div>
             <div className="hidden md:block flex-1 max-w-none">
