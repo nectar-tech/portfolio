@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from '@/pages/Home';
 import CaseStudy from '@/pages/CaseStudy';
@@ -21,6 +22,7 @@ export default function App(): React.ReactNode {
         <Route path="/case-study/:id" element={<CaseStudy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
