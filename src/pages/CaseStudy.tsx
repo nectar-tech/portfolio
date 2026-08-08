@@ -32,7 +32,7 @@ export default function CaseStudy() {
   if (!project) return <Navigate to="/404" replace />;
 
   const {
-    client, year, headline, subtitle, tags, heroImage, heroBg, heroBgMobile, heroBgDarkText,
+    client, headline, subtitle, tags, heroImage, heroBg, heroBgMobile, heroBgDarkText,
     problem, rootCauses, consequences, overview, strategy, research, game, narrative, b2b, kpis,
     rimon, targetAudienceImage,
     challenge, architecture, highlights, keyFeatures, impact, footerNav,
@@ -63,11 +63,16 @@ export default function CaseStudy() {
                   Back to Portfolio
                 </Link>
                 <p className="text-sm font-semibold text-brandOrange mb-3 tracking-wide">
-                  {client} <span className={`font-normal ${heroBgDarkText ? 'text-mainText/60' : 'text-white/60'}`}>{year}</span>
+                  {client}
                 </p>
-                <h1 className="text-[38px] font-black leading-[1] tracking-tight mb-5 text-mainText">
+                <h1 className="text-[38px] font-black leading-[1] tracking-tight mb-2 text-mainText">
                   {headline}
                 </h1>
+                {subtitle && (
+                  <p className={`text-lg leading-[1.2] tracking-tight mb-5 font-normal ${heroBgDarkText ? 'text-mainText' : 'text-white'}`}>
+                    {subtitle}
+                  </p>
+                )}
                 <div className="flex flex-wrap gap-2.5">
                   {tags.map((tag) => (
                     <span key={tag} className="inline-flex items-center px-[18px] py-2 rounded-2xl text-sm font-medium bg-mainText/10 text-mainText/80">
@@ -90,11 +95,16 @@ export default function CaseStudy() {
               Back to Portfolio
             </Link>
             <p className="text-sm font-semibold text-brandOrange mb-4 tracking-wide">
-              {client} <span className={`font-normal ${heroBgDarkText ? 'text-mainText/60' : 'text-white/60'}`}>{year}</span>
+              {client}
             </p>
-            <h1 className={`text-[42px] md:text-[56px] font-black leading-[1] tracking-tight mb-6 ${heroBgDarkText ? 'text-mainText' : 'text-white'}`}>
+            <h1 className={`text-[42px] md:text-[56px] font-black leading-[1] tracking-tight mb-2 ${heroBgDarkText ? 'text-mainText' : 'text-white'}`}>
               {headline}
             </h1>
+            {subtitle && (
+              <p className={`text-xl leading-[1.2] tracking-tight mb-6 font-normal ${heroBgDarkText ? 'text-mainText' : 'text-white'}`}>
+                {subtitle}
+              </p>
+            )}
             <div className="flex flex-wrap gap-2.5">
               {tags.map((tag) => (
                 <span
@@ -119,7 +129,7 @@ export default function CaseStudy() {
               Back to Portfolio
             </Link>
             <p className="text-sm font-semibold text-brandOrange mb-4 tracking-wide">
-              {client} <span className="text-muted font-normal">{year}</span>
+              {client}
             </p>
             <h1 className="text-[52px] md:text-[8vw] lg:text-[100px] font-black leading-[0.96] tracking-tight text-mainText max-w-[900px] mb-4">
               {headline}
@@ -471,30 +481,6 @@ export default function CaseStudy() {
                         ))}
                       </ul>
                     </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* KEY SCREENS */}
-              <section className="w-full bg-white py-16 px-6 md:px-[60px]">
-                <div className="max-w-[1100px] mx-auto">
-                  <p className={eyebrow}>{rimon.keyScreens.label}</p>
-                  <h2 className={sectionTitle}>{rimon.keyScreens.title}</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                    {rimon.keyScreens.screens.map((s) => (
-                      <div key={s.label} className="max-w-[240px] mx-auto w-full">
-                        <div className="bg-white rounded-[16px] md:rounded-[30px] shadow-[0_5px_6px_rgba(0,0,0,0.11)] overflow-hidden">
-                          {s.image ? (
-                            <img src={s.image} alt={s.imageAlt ?? s.label} className="w-full block" loading="lazy" />
-                          ) : (
-                            <div className="aspect-[9/16] flex items-center justify-center">
-                              <ImagePlaceholder minHeight="min-h-full" />
-                            </div>
-                          )}
-                        </div>
-                        <p className="text-sm font-semibold text-muted text-center mt-3.5">{s.label}</p>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </section>

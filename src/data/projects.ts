@@ -88,11 +88,6 @@ export interface RimonData {
     initial: string[];
     advanced: string[];
   };
-  keyScreens: {
-    label: string;
-    title: string;
-    screens: { label: string; image?: string; imageAlt?: string }[];
-  };
   uiDesign: {
     label: string;
     title: string;
@@ -159,9 +154,10 @@ export interface CaseStudyProject {
 export const projects: CaseStudyProject[] = [
   {
     id: 'academix',
-    client: 'ACADEMIX',
+    client: 'ACADEMIX · Unit 8200',
     year: '2025',
-    headline: 'Unified platform for seamless employee training',
+    headline: 'An end-to-end learning system taking soldiers from onboarding to operational',
+    subtitle: 'Shipped to production',
     tags: ['Dashboard', 'Complex System'],
     heroImage: '/images/home/aca.jpg',
     heroImagePosition: 'right',
@@ -322,7 +318,7 @@ export const projects: CaseStudyProject[] = [
     id: 'rimon',
     client: 'RIMON',
     year: '2026',
-    headline: 'Closing the gap to your full entitlements',
+    headline: 'Bringing together every benefit scattered across different systems',
     subtitle: 'Native Mobile Application for Managing and Utilizing Rights and Financial Benefits',
     tags: ['Product Strategy', 'Mobile App'],
     heroBg: '/images/rimon/rimonTop.jpg',
@@ -399,15 +395,6 @@ export const projects: CaseStudyProject[] = [
         advanced: [
           'Utilization of at least one benefit per user',
           'Reduction in average time required to utilize a benefit compared to the current process',
-        ],
-      },
-      keyScreens: {
-        label: 'Wireframes',
-        title: 'Onboarding',
-        screens: [
-          { label: 'Intro Carousel', image: '/images/rimon/onboarding-intro-carousel.jpg', imageAlt: 'Onboarding welcome and login screen' },
-          { label: 'ID Verification', image: '/images/rimon/onboarding-id-verification.jpg', imageAlt: 'Onboarding screen for entering personal ID number' },
-          { label: 'Personalization', image: '/images/rimon/onboarding-personalization.jpg', imageAlt: 'Onboarding screen for selecting areas of interest' },
         ],
       },
       uiDesign: {
@@ -496,7 +483,7 @@ export const projects: CaseStudyProject[] = [
       ],
     },
     overview: {
-      label: 'Project Overview',
+      label: 'Original Artwork',
       title: 'From static quizzes to a living visual ecosystem',
       boldLead: 'I designed and illustrated',
       body: ' Neon Odyssey, a dual-sided web platform built to solve a core educational challenge: How do we turn static "True or False" quizzes into highly engaging digital experiences without causing cognitive overload?',

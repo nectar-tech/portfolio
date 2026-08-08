@@ -56,6 +56,23 @@ export default function Home() {
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
+        <div className="flex justify-center mt-14" aria-hidden="true">
+          <div className="w-14 h-14 rounded-full border-2 border-[#784ECC]/40 bg-white/50 flex items-center justify-center animate-bounce">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-[#784ECC]/70 mt-1"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+        </div>
       </section>
 
       {/* ABOUT */}
@@ -71,10 +88,10 @@ export default function Home() {
             </h2>
             <div className="space-y-4 text-[17px] text-mainText/70 leading-[1.75]">
               <p>
-                That's why my playground spans across learning technologies, computer game design, and complex web systems. I love taking intricate data or structural chaos and turning them into clean, intuitive, and engaging digital experiences.
+                That's why my playground spans learning technologies, computer game design, and complex web systems. Funny enough, I'm not a gamer myself - I studied game design because I wanted to understand what makes games so good at guiding people, motivating them, and keeping them engaged, then bring those same principles into products that do good in the world. I love taking intricate data or structural chaos and turning it into clean, intuitive, engaging experiences.
               </p>
               <p>
-                Today, I bring this multidisciplinary approach into my work as a Product Designer, combining my academic background with hands-on UX/UI design experience in IDF's 8200 unit.
+                Today, I bring this multidisciplinary approach into my work as a Product Designer, combining my academic background with hands-on UX/UI design experience in IDF's Unit 8200.
               </p>
             </div>
             {personal.cvUrl && (
