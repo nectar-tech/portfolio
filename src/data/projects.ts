@@ -319,7 +319,6 @@ export const projects: CaseStudyProject[] = [
     client: 'RIMON',
     year: '2026',
     headline: 'Bringing together every benefit scattered across different systems',
-    subtitle: 'Native Mobile Application for Managing and Utilizing Rights and Financial Benefits',
     tags: ['Product Strategy', 'Mobile App'],
     heroBg: '/images/rimon/rimonTop.jpg',
     heroBgMobile: '/images/rimon/rimonMobile.jpg',
